@@ -1,0 +1,325 @@
+# Dependencies
+node_modules
+.npminstall-debug.log*
+.npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Production builds
+.out
+.next
+dist
+build
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# IDE and editor files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+coverage
+.nyc_output
+
+# Build outputs
+lib/
+es/
+dist/
+
+# Typescript
+*.tsbuildinfo
+
+# Next.js specific
+.next/
+.nuxt/
+.vercel
+.now
+
+# Serverless directories
+.serverless/
+
+# Temporary files
+tmp/
+temp/
+
+# Log files
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env*
+
+# parcel-bundler cache
+.cache
+
+# vuepress build output
+.vuepress/dist
+
+# vuepress dev cache
+.vuepress/.temp
+
+# vuepress cache and temp files
+.vuepress/.cache
+
+# gatsby files
+.cache/
+public/*.html
+public/page-data/
+public/static/
+
+# vuepress temp and cache
+.vuepress/.temp
+.vuepress/.cache
+
+# vuepress build output
+.vuepress/dist
+
+# nuxt.js build output
+.nuxt
+
+# vuepress dev cache
+.vuepress/.temp
+
+# vuepress cache
+.vuepress/.cache
+
+# vuepress build output
+.vuepress/dist
+
+# gatsby files
+.cache/
+public/*.html
+public/page-data/
+public/static/
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.atom/
+.build/
+coverage/
+dist/
+web_modules/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+*.iml
+*.ipr
+*.iws
+.idea/
+.vs/
+*.sw[op]
+*.swo
+*.swn
+*.swo
+*.swp
+
+# Debug
+debug/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env.local
+.env.*.local
+
+# Firebase
+.firebase
+firestore.rules
+firestore.indexes.json
+
+# Vercel
+.vercel
+.now
+
+# Netlify
+.netlify
+
+# Docker
+.dockerignore
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Lock files (uncomment if you want to ignore lock files)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Windows specific files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Windows reserved names (these can cause issues on Windows)
+nul
+con
+prn
+aux
+com1
+com2
+com3
+com4
+com5
+com6
+com7
+com8
+com9
+lpt1
+lpt2
+lpt3
+lpt4
+lpt5
+lpt6
+lpt7
+lpt8
+lpt9
+
+# Public directory specific Windows issues
+public/nul
+public/con
+public/prn
+public/aux
+
+# Log files
+*.log
+logs
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env*
+
+# parcel-bundler cache
+.cache
+
+# vuepress build output
+.vuepress/dist
+
+# vuepress dev cache
+.vuepress/.temp
+
+# vuepress cache and temp files
+.vuepress/.cache
+
+# gatsby files
+.cache/
+public/*.html
+public/page-data/
+public/static/
+
+# vuepress temp and cache
+.vuepress/.temp
+
+# vuepress cache
+.vuepress/.cache
+
+# vuepress build output
+.vuepress/dist
+
+# gatsby files
+.cache/
+public/*.html
+public/page-data/
+public/static/
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.atom/
+.build/
+coverage/
+dist/
+web_modules/

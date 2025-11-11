@@ -1,0 +1,370 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties for Design System */
+:root {
+  /* Primary Palette */
+  --primary-navy: #1A2746;
+  --primary-navy-dark: #141B30;
+  --primary-navy-light: #2A3A5A;
+  
+  /* Trust & Conversion Colors (Green Theme) */
+  --trust-green: #28D27A;
+  --trust-green-dark: #1FB864;
+  --trust-green-light: #E8FAF1;
+
+  /* Success & Growth */
+  --success-green: #22C55E;
+  --success-green-dark: #16A34A;
+  --success-green-light: #DCFCE7;
+  
+  /* Professional Grays */
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-600: #475569;
+  --gray-900: #0F172A;
+  
+  /* Status Colors */
+  --warning-orange: #F59E0B;
+  --danger-red: #EF4444;
+  
+  /* Overlay & Transparency */
+  --overlay-dark: rgba(15, 23, 42, 0.8);
+  --overlay-light: rgba(248, 250, 252, 0.95);
+  
+  /* Font Stack */
+  --font-display: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
+  --font-body: 'Inter', 'SF Pro Text', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', monospace;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus Styles for Accessibility */
+:focus {
+  outline: 2px solid var(--trust-green);
+  outline-offset: 2px;
+}
+
+/* Skip to Content Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-navy);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Component Base Classes */
+@layer components {
+  /* Button Components */
+  .btn-primary {
+    @apply bg-trust-green text-white font-semibold px-8 py-4 rounded-lg text-lg border-none cursor-pointer transition-all duration-200 ease-in-out;
+    box-shadow: 0 4px 12px rgba(40, 210, 122, 0.3);
+  }
+
+  .btn-primary:hover {
+    @apply bg-trust-green-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(40, 210, 122, 0.4);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(40, 210, 122, 0.3);
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-primary-navy font-semibold px-8 py-4 rounded-lg text-lg border-2 border-primary-navy cursor-pointer transition-all duration-200 ease-in-out;
+  }
+  
+  .btn-secondary:hover {
+    @apply bg-primary-navy text-white;
+  }
+  
+  /* Trust Badge */
+  .trust-badge {
+    @apply inline-flex items-center gap-2 bg-trust-green-light text-success-green-dark px-4 py-2 rounded-full text-sm font-medium border border-trust-green;
+  }
+  
+  /* Feature Card */
+  .feature-card {
+    @apply bg-white rounded-xl p-8 shadow-lg border border-professional-200 transition-all duration-300 ease-in-out;
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+    @apply border-trust-green;
+  }
+  
+  /* Social Proof Stats */
+  .social-proof-stat {
+    @apply text-center p-6;
+  }
+  
+  .stat-number {
+    @apply text-4xl font-extrabold text-success-green leading-none mb-2;
+  }
+  
+  .stat-label {
+    @apply text-sm text-professional-600 font-medium uppercase tracking-wider;
+  }
+  
+  /* Professional Layout */
+  .professional-layout {
+    @apply grid gap-8 items-center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .credibility-indicator {
+    @apply flex items-center gap-3 p-4 bg-professional-50 rounded-lg border-l-4 border-success-green;
+  }
+  
+  /* Risk Reduction Elements */
+  .risk-reduction {
+    @apply flex items-center gap-4 mt-4 text-sm text-professional-600;
+  }
+  
+  .guarantee-badge {
+    @apply bg-success-green-light text-success-green-dark px-3 py-1 rounded-full font-medium;
+  }
+  
+  /* Container Classes */
+  .container-custom {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+  
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary-navy) 0%, var(--trust-green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+  }
+
+  .bg-gradient-cta {
+    background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-navy-dark) 100%);
+  }
+
+  .backdrop-blur-custom {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Modern Typography Utilities */
+  .tracking-tight {
+    letter-spacing: -0.025em;
+  }
+
+  .tracking-tighter {
+    letter-spacing: -0.05em;
+  }
+
+  .leading-relaxed {
+    line-height: 1.6;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Animation Classes */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.5s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(20px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    transform: translateY(-20px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    transform: scale(0.95); 
+    opacity: 0; 
+  }
+  to { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --gray-600: #000000;
+    --gray-900: #000000;
+  }
+}
+
+/* Dark Mode Support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gray-50: #0F172A;
+    --gray-100: #1E293B;
+    --gray-900: #F8FAFC;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
