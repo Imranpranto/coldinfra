@@ -146,7 +146,7 @@ export function Footer() {
                     </li>
                     <li>
                       <Link
-                        href="/Resources"
+                        href="/resources"
                         className="text-sm text-slate-400 hover:text-trust-green transition-colors duration-200"
                       >
                         Resources
