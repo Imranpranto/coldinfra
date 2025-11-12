@@ -35,7 +35,7 @@ export function FeaturesSection() {
       ),
       title: "Zero Technical Hassle Setup",
       description: "We handle all technical complexity: domain registration, DNS configuration, email authentication. You focus on campaigns, we handle infrastructure.",
-      badge: "Ready in 10 minutes"
+      badge: "Fast & Easy Setup"
     },
     {
       icon: (
@@ -104,20 +104,30 @@ export function FeaturesSection() {
   ]
 
   return (
-    <Section id="features" padding="xl">
-      <Container>
+    <Section id="features" padding="xl" className="relative overflow-hidden">
+      {/* Clean Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-green-50/30" />
+
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+      <Container className="relative z-10">
         <div className="space-y-20">
-          {/* Section Header (ScaledMail "Unlock" Pattern) */}
+          {/* Section Header */}
           <div className="text-center space-y-4 max-w-4xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold text-text-primary">
-              Cut Out Technical Hassle
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-teal/10 rounded-full mb-2">
+              <div className="w-2 h-2 bg-primary-teal rounded-full animate-pulse" />
+              <span className="text-sm font-semibold text-primary-teal">Everything You Need</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">
+              Professional Email Infrastructure
               <span className="block mt-2 bg-gradient-to-r from-trust-green via-primary-mint to-trust-green-dark bg-clip-text text-transparent">
-                We Handle Best DNS Setup to Land in Primary Inbox
+                Without the Technical Headaches
               </span>
             </h2>
-            <p className="text-xl text-text-secondary leading-relaxed">
-              Affordable Google Workspace pricing at $2.50/mailbox.
-              Professional DNS configuration that breaks all restrictions and lands your offer in clients' primary email.
+            <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
+              Complete DNS setup, Google Workspace at $2.50/mailbox, and 98.7% inbox delivery.
+              We handle the complexity—you focus on closing deals.
             </p>
           </div>
 
@@ -135,17 +145,20 @@ export function FeaturesSection() {
             ))}
           </Grid>
 
-          {/* Process Section (ScaledMail Pattern with Green) */}
+          {/* Process Section */}
           <div className="space-y-12">
             <div className="text-center space-y-4">
-              <h3 className="text-2xl lg:text-3xl font-bold text-text-primary">
-                How We Cut Technical Hassle
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-trust-green/10 rounded-full mb-2">
+                <span className="text-sm font-semibold text-trust-green">Simple Process</span>
+              </div>
+              <h3 className="text-2xl lg:text-3xl font-bold text-slate-900">
+                How It Works
                 <span className="block mt-2 text-trust-green">
-                  3 Steps to Primary Inbox Delivery
+                  Three Simple Steps
                 </span>
               </h3>
-              <p className="text-lg text-text-secondary">
-                From signup to sending in 10 minutes — we handle all DNS complexity
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                We handle all the technical complexity—DNS, authentication, warming, and monitoring
               </p>
             </div>
 
@@ -164,10 +177,10 @@ export function FeaturesSection() {
                     <div className="flex justify-center text-trust-green group-hover:text-trust-green-dark transition-colors duration-200">
                       {step.icon}
                     </div>
-                    <h4 className="text-xl font-semibold text-primary-navy">
+                    <h4 className="text-xl font-semibold text-slate-900">
                       {step.title}
                     </h4>
-                    <p className="text-professional-600 leading-relaxed">
+                    <p className="text-slate-600 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -185,63 +198,71 @@ export function FeaturesSection() {
             </div>
           </div>
 
-          {/* Comparison Section (Green Theme) */}
-          <div className="bg-professional-50 rounded-2xl p-8 lg:p-12">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-3xl font-bold text-text-primary mb-4">
-                Why COLDINFRA Cuts Technical Hassle
-                <span className="block mt-2 text-trust-green">
-                  Best DNS Setup at Affordable Google Workspace Price
-                </span>
-              </h3>
-              <p className="text-lg text-text-secondary">
-                We handle complexity so you focus on landing offers in primary inbox
-              </p>
-            </div>
+          {/* Comparison Section - Glass Morphism Design */}
+          <div className="relative group">
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-trust-green/20 via-primary-teal/20 to-trust-green/20 rounded-[32px] blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
 
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-professional-200">
-                    <th className="text-left py-4 px-6 font-semibold text-primary-navy"></th>
-                    <th className="text-center py-4 px-6 font-semibold text-primary-navy">COLDINFRA</th>
-                    <th className="text-center py-4 px-6 font-semibold text-professional-600">DIY Setup</th>
-                    <th className="text-center py-4 px-6 font-semibold text-professional-600">Other Services</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-professional-200">
-                  <tr>
-                    <td className="py-4 px-6 font-medium text-primary-navy">Setup Time</td>
-                    <td className="py-4 px-6 text-center text-success-green font-semibold">10 minutes</td>
-                    <td className="py-4 px-6 text-center text-professional-600">2-4 weeks</td>
-                    <td className="py-4 px-6 text-center text-professional-600">3-7 days</td>
-                  </tr>
-                  <tr>
-                    <td className="py-4 px-6 font-medium text-primary-navy">Technical Expertise Required</td>
-                    <td className="py-4 px-6 text-center text-success-green font-semibold">None</td>
-                    <td className="py-4 px-6 text-center text-professional-600">Expert level</td>
-                    <td className="py-4 px-6 text-center text-professional-600">Intermediate</td>
-                  </tr>
-                  <tr>
-                    <td className="py-4 px-6 font-medium text-primary-navy">Monthly Cost</td>
-                    <td className="py-4 px-6 text-center text-success-green font-semibold">$2.50/mailbox</td>
-                    <td className="py-4 px-6 text-center text-professional-600">$15+/mailbox</td>
-                    <td className="py-4 px-6 text-center text-professional-600">$8-20/mailbox</td>
-                  </tr>
-                  <tr>
-                    <td className="py-4 px-6 font-medium text-primary-navy">Deliverability Optimization</td>
-                    <td className="py-4 px-6 text-center text-success-green font-semibold">98.7% inbox rate</td>
-                    <td className="py-4 px-6 text-center text-professional-600">Variable</td>
-                    <td className="py-4 px-6 text-center text-professional-600">85-95%</td>
-                  </tr>
-                  <tr>
-                    <td className="py-4 px-6 font-medium text-primary-navy">Ongoing Support</td>
-                    <td className="py-4 px-6 text-center text-success-green font-semibold">24/7 Expert Support</td>
-                    <td className="py-4 px-6 text-center text-professional-600">Self-managed</td>
-                    <td className="py-4 px-6 text-center text-professional-600">Business hours</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="relative bg-white/80 backdrop-blur-2xl rounded-[32px] p-8 lg:p-12 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-teal/10 rounded-full mb-4">
+                  <span className="text-sm font-semibold text-primary-teal">Competitive Edge</span>
+                </div>
+                <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-4">
+                  Why Choose COLDINFRA
+                  <span className="block mt-2 text-trust-green">
+                    Better Setup, Lower Cost, Higher Deliverability
+                  </span>
+                </h3>
+                <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                  Side-by-side comparison with DIY setup and other services
+                </p>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-slate-200">
+                      <th className="text-left py-4 px-6 font-semibold text-slate-900"></th>
+                      <th className="text-center py-4 px-6 font-semibold text-slate-900">COLDINFRA</th>
+                      <th className="text-center py-4 px-6 font-semibold text-slate-600">DIY Setup</th>
+                      <th className="text-center py-4 px-6 font-semibold text-slate-600">Other Services</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    <tr>
+                      <td className="py-4 px-6 font-medium text-slate-900">Setup Time</td>
+                      <td className="py-4 px-6 text-center text-trust-green font-semibold">Quick & Easy</td>
+                      <td className="py-4 px-6 text-center text-slate-600">2-4 weeks</td>
+                      <td className="py-4 px-6 text-center text-slate-600">3-7 days</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-6 font-medium text-slate-900">Technical Expertise</td>
+                      <td className="py-4 px-6 text-center text-trust-green font-semibold">None Required</td>
+                      <td className="py-4 px-6 text-center text-slate-600">Expert level</td>
+                      <td className="py-4 px-6 text-center text-slate-600">Intermediate</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-6 font-medium text-slate-900">Monthly Cost</td>
+                      <td className="py-4 px-6 text-center text-trust-green font-semibold">$2.50/mailbox</td>
+                      <td className="py-4 px-6 text-center text-slate-600">$15+/mailbox</td>
+                      <td className="py-4 px-6 text-center text-slate-600">$8-20/mailbox</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-6 font-medium text-slate-900">Inbox Delivery</td>
+                      <td className="py-4 px-6 text-center text-trust-green font-semibold">98.7% average</td>
+                      <td className="py-4 px-6 text-center text-slate-600">Variable</td>
+                      <td className="py-4 px-6 text-center text-slate-600">85-95%</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-6 font-medium text-slate-900">Support</td>
+                      <td className="py-4 px-6 text-center text-trust-green font-semibold">24/7 Expert</td>
+                      <td className="py-4 px-6 text-center text-slate-600">Self-managed</td>
+                      <td className="py-4 px-6 text-center text-slate-600">Business hours</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
