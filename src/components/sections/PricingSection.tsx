@@ -1,22 +1,81 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Section } from '@/components/ui/Container'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { PricingCard } from '@/components/ui/PricingCard'
 import { SecurityBadge } from '@/components/ui/SecurityBadge'
-import { trackEvent } from '@/lib/utils'
+import { trackEvent, cn } from '@/lib/utils'
+
+interface PricingCalculation {
+  mailboxCount: number
+  pricePerMailbox: number
+  tierName: string
+  monthlyCost: number
+  traditionalCost: number
+  monthlySavings: number
+  annualSavings: number
+  savingsPercentage: number
+}
 
 export function PricingSection() {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly')
+  const [mailboxCount, setMailboxCount] = useState(10)
+  const [pricing, setPricing] = useState<PricingCalculation>(calculatePricing(10))
+
+  // Calculate pricing based on mailbox count
+  function calculatePricing(count: number): PricingCalculation {
+    let pricePerMailbox: number
+    let tierName: string
+
+    if (count >= 100) {
+      pricePerMailbox = 2.50
+      tierName = "Scale"
+    } else if (count >= 30) {
+      pricePerMailbox = 2.80
+      tierName = "Growth"
+    } else {
+      pricePerMailbox = 3.00
+      tierName = "Starter"
+    }
+
+    const monthlyCost = count * pricePerMailbox
+    const traditionalCost = count * 7 // Actual Google Workspace pricing
+    const monthlySavings = traditionalCost - monthlyCost
+    const annualSavings = monthlySavings * 12
+    const savingsPercentage = (monthlySavings / traditionalCost) * 100
+
+    return {
+      mailboxCount: count,
+      pricePerMailbox,
+      tierName,
+      monthlyCost,
+      traditionalCost,
+      monthlySavings,
+      annualSavings,
+      savingsPercentage
+    }
+  }
+
+  // Update pricing when mailbox count changes
+  useEffect(() => {
+    setPricing(calculatePricing(mailboxCount))
+  }, [mailboxCount])
+
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value)
+    setMailboxCount(value)
+
+    trackEvent('pricing_calculator_interaction', {
+      mailbox_count: value,
+      tier: calculatePricing(value).tierName,
+      monthly_cost: calculatePricing(value).monthlyCost
+    })
+  }
 
   const handlePlanSelect = (planName: string, price: string) => {
     trackEvent('pricing_plan_select', {
       plan_name: planName,
-      price: price,
-      billing_cycle: billingCycle
+      price: price
     })
     // Handle plan selection
   }
@@ -24,129 +83,225 @@ export function PricingSection() {
   const plans = [
     {
       title: "Starter",
-      price: billingCycle === 'monthly' ? "$25" : "$250",
-      originalPrice: billingCycle === 'annual' ? "$300" : null,
-      period: billingCycle === 'monthly' ? "/month" : "/year",
-      description: "Perfect for small teams getting started with cold email",
+      price: "$30",
+      period: "/month",
+      description: "Best for Freelancers Looking to Startup",
       features: [
-        "Up to 10 mailboxes ($2.50 each)",
-        "Complete Google Workspace setup",
-        "SPF, DMARC, DKIM configuration",
-        "Basic email warming strategy",
-        "Access to 13 free tools",
-        "Email support",
-        "30-day money-back guarantee"
+        "10 Mailboxes at $3/mailbox",
+        "Additional Mailboxes at $3/Mailbox",
+        "Send Up to 8,000 Emails Per Month",
+        "Support"
       ],
-      ctaText: "Start Free Trial",
+      ctaText: "Subscribe Now",
       featured: false
     },
     {
       title: "Growth",
-      price: billingCycle === 'monthly' ? "$125" : "$1,250",
-      originalPrice: billingCycle === 'annual' ? "$1,500" : null,
-      period: billingCycle === 'monthly' ? "/month" : "/year",
-      description: "Most popular plan for growing sales teams",
+      price: "$84",
+      period: "/month",
+      description: "Best for Mid-Size Agencies",
       features: [
-        "Up to 50 mailboxes ($2.50 each)",
-        "Complete Google Workspace setup",
-        "Advanced authentication setup",
-        "Premium warming strategies",
-        "Priority email & chat support",
-        "Custom domain recommendations",
-        "Advanced deliverability monitoring",
-        "One-click export functionality",
-        "Integration support"
+        "30 Mailboxes at $2.8/mailbox",
+        "Additional Mailboxes at $3/Mailbox",
+        "Send Up to 24,000 Emails Per Month",
+        "Support"
       ],
-      ctaText: "Start Free Trial",
+      ctaText: "Subscribe Now",
       featured: true,
       badge: "Most Popular"
     },
     {
-      title: "Enterprise",
-      price: "Custom",
-      period: "",
-      description: "For large organizations with complex requirements",
+      title: "Scale",
+      price: "$250",
+      period: "/month",
+      description: "Best for Agencies with Multiple Clients",
       features: [
-        "Unlimited mailboxes",
-        "White-glove setup service",
-        "Dedicated account manager",
-        "Custom authentication setup",
-        "Enterprise-grade security",
-        "Priority phone support",
-        "Custom integration development",
-        "SLA guarantees",
-        "Training & onboarding",
-        "Bulk domain management"
+        "100 Mailboxes at $2.5/mailbox",
+        "Additional Mailboxes at $2.5/Mailbox",
+        "Send Up to 80,000 Emails Per Month",
+        "Priority Support"
       ],
-      ctaText: "Contact Sales",
+      ctaText: "Subscribe Now",
       featured: false
     }
   ]
 
   const faqs = [
     {
-      question: "How do you achieve $2.50/mailbox Google Workspace pricing?",
-      answer: "We eliminate technical hassle through expert DNS configuration and bulk Google Workspace management. No middleman markup — just affordable professional email infrastructure."
+      question: "Can I upgrade or downgrade my plan anytime?",
+      answer: "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing accordingly."
     },
     {
-      question: "What DNS setup do you handle to break spam restrictions?",
-      answer: "We configure professional SPF, DMARC, DKIM records optimized to bypass Gmail, Outlook, Yahoo filters. Our setup ensures 98.7% primary inbox delivery, not promotions tab."
+      question: "What's included in all plans?",
+      answer: "All plans include expert DNS configuration (SPF, DMARC, DKIM), email warming, deliverability monitoring, and ongoing support to ensure 98.7% inbox delivery."
     },
     {
-      question: "How quickly can I start landing in primary inbox?",
-      answer: "Infrastructure ready in 10 minutes with expert DNS configuration. We recommend 24-48 hour warming for optimal primary inbox delivery at 98.7% rate."
+      question: "How does the additional mailbox pricing work?",
+      answer: "Each plan includes a set number of mailboxes. If you need more, you can add them at the per-mailbox rate shown in your plan (ranging from $2.50-$3.00 per mailbox)."
     },
     {
-      question: "What if I'm not satisfied with deliverability?",
-      answer: "30-day money-back guarantee. If our DNS setup doesn't achieve primary inbox delivery, we refund your full payment. No technical hassle, no risk."
+      question: "What happens if I exceed my monthly email limit?",
+      answer: "We'll notify you as you approach your limit. You can either upgrade to a higher plan or wait until the next billing cycle. We never cut off your service mid-campaign."
     },
     {
-      question: "Do you provide ongoing DNS and deliverability support?",
-      answer: "Yes, 24/7 expert DNS support included. We monitor, optimize, and fix deliverability issues before they impact your campaigns. Zero technical hassle."
+      question: "Is there a setup fee or long-term contract?",
+      answer: "No setup fees, no long-term contracts. Pay monthly and cancel anytime. We include a 30-day money-back guarantee if you're not satisfied."
     }
   ]
 
   return (
-    <Section id="pricing" background="gray" padding="xl">
-      <Container>
-        <div className="space-y-16">
-          {/* Section Header (ScaledMail Pattern) */}
-          <div className="text-center space-y-6">
-            <h2 className="text-3xl lg:text-4xl font-bold text-text-primary">
-              Affordable Google Workspace Pricing
-              <span className="block mt-2 bg-gradient-to-r from-trust-green via-primary-mint to-trust-green-dark bg-clip-text text-transparent">
-                Cut Email Costs to $2.50/Mailbox
-              </span>
-            </h2>
-            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-              No hidden fees, no setup costs, no technical hassle.
-              Professional DNS setup included at the best Google Workspace price.
-            </p>
+    <Section id="pricing" background="default" padding="xl" className="relative overflow-hidden">
+      {/* Clean Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-green-50/30" />
 
-            {/* Billing Toggle */}
-            <div className="flex items-center justify-center space-x-4">
-              <span className={billingCycle === 'monthly' ? 'text-primary-navy font-semibold' : 'text-professional-600'}>
-                Monthly
-              </span>
-              <button
-                onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'annual' : 'monthly')}
-                className="relative inline-flex h-6 w-11 items-center rounded-full bg-professional-200 transition-colors focus:outline-none focus:ring-2 focus:ring-trust-green focus:ring-offset-2"
-              >
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    billingCycle === 'annual' ? 'translate-x-6' : 'translate-x-1'
-                  }`}
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+      <Container className="relative z-10">
+        <div className="space-y-16">
+          {/* Section Header */}
+          <div className="text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-teal/10 rounded-full mb-2">
+              <div className="w-2 h-2 bg-primary-teal rounded-full animate-pulse" />
+              <span className="text-sm font-semibold text-primary-teal">Simple Pricing</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">
+              Choose Your Perfect Plan
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Flexible pricing that grows with your business. All plans include expert DNS setup and deliverability monitoring.
+            </p>
+          </div>
+
+          {/* Savings Calculator - Compact Vertical Design */}
+          <div className="max-w-4xl mx-auto">
+            {/* Glass Card with Glow Effect */}
+            <div className="relative group">
+              {/* Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-trust-green/20 via-primary-teal/20 to-trust-green/20 rounded-[32px] blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
+
+              <div className="relative bg-white/80 backdrop-blur-2xl rounded-[32px] p-4 lg:p-6 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
+
+              {/* Slider Section */}
+              <div className="mb-4">
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-medium text-slate-600">
+                    Number of Mailboxes
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <div className="text-xl font-bold text-trust-green">
+                      {mailboxCount}
+                    </div>
+                    <div className={cn(
+                      "px-2 py-0.5 rounded-md text-xs font-semibold",
+                      pricing.tierName === "Scale" && "bg-trust-green text-white",
+                      pricing.tierName === "Growth" && "bg-trust-green/20 text-trust-green",
+                      pricing.tierName === "Starter" && "bg-slate-100 text-slate-600"
+                    )}>
+                      {pricing.tierName}
+                    </div>
+                  </div>
+                </div>
+
+                <input
+                  type="range"
+                  min="10"
+                  max="300"
+                  step="1"
+                  value={mailboxCount}
+                  onChange={handleSliderChange}
+                  className="w-full h-2 bg-slate-100 rounded-full appearance-none cursor-pointer slider-thumb"
+                  style={{
+                    background: `linear-gradient(to right, #28D27A 0%, #28D27A ${((mailboxCount - 10) / 290) * 100}%, #F1F5F9 ${((mailboxCount - 10) / 290) * 100}%, #F1F5F9 100%)`
+                  }}
                 />
-              </button>
-              <span className={billingCycle === 'annual' ? 'text-primary-navy font-semibold' : 'text-professional-600'}>
-                Annual
-                <span className="ml-2 text-sm text-success-green font-medium">(Save 17%)</span>
-              </span>
+                <div className="flex justify-between mt-1 text-xs text-slate-500">
+                  <span>10</span>
+                  <span>300</span>
+                </div>
+              </div>
+
+              {/* Details Grid */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 pt-4 border-t border-slate-200/50">
+
+                {/* Retail Price */}
+                <div className="text-center p-3 rounded-lg bg-slate-50/50">
+                  <div className="text-xs text-slate-500 mb-1">Retail Price</div>
+                  <div className="text-lg font-bold text-slate-400 line-through">
+                    ${pricing.traditionalCost.toFixed(0)}
+                  </div>
+                </div>
+
+                {/* COLDINFRA Price */}
+                <div className="text-center p-3 rounded-lg bg-trust-green/5">
+                  <div className="text-xs text-trust-green mb-1 font-medium">Your Price</div>
+                  <div className="text-lg font-bold text-trust-green">
+                    ${pricing.monthlyCost.toFixed(0)}
+                  </div>
+                </div>
+
+                {/* Monthly Savings */}
+                <div className="text-center p-3 rounded-lg bg-slate-50/50">
+                  <div className="text-xs text-slate-500 mb-1">Monthly Savings</div>
+                  <div className="text-lg font-bold text-trust-green">
+                    ${pricing.monthlySavings.toFixed(0)}
+                  </div>
+                </div>
+
+                {/* Annual Savings */}
+                <div className="text-center p-3 rounded-lg bg-slate-50/50">
+                  <div className="text-xs text-slate-500 mb-1">Annual Savings</div>
+                  <div className="text-lg font-bold text-trust-green">
+                    ${pricing.annualSavings.toFixed(0)}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Savings Percentage */}
+              <div className="mt-3 text-center">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-trust-green/10 rounded-full">
+                  <span className="text-xs font-semibold text-slate-900">
+                    Save <span className="text-trust-green">{pricing.savingsPercentage.toFixed(0)}%</span> vs Google Retail
+                  </span>
+                </div>
+              </div>
+
+              {/* Get Started Button */}
+              <div className="mt-4 text-center">
+                <Button
+                  size="default"
+                  onClick={() => {
+                    // Scroll to pricing cards
+                    const pricingCards = document.querySelector('#pricing-cards')
+                    pricingCards?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+                    trackEvent('calculator_get_started', {
+                      mailbox_count: mailboxCount,
+                      tier: pricing.tierName,
+                      monthly_cost: pricing.monthlyCost
+                    })
+                  }}
+                  className="bg-trust-green hover:bg-trust-green-dark text-white group px-4 py-2"
+                >
+                  Get Started Now
+                  <svg
+                    className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Button>
+              </div>
+
+              </div>
             </div>
           </div>
 
           {/* Pricing Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div id="pricing-cards" className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {plans.map((plan, index) => (
               <PricingCard
                 key={index}
@@ -165,85 +320,6 @@ export function PricingSection() {
             ))}
           </div>
 
-          {/* ROI Calculator Section */}
-          <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg border border-professional-200">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl lg:text-3xl font-bold text-primary-navy mb-4">
-                Calculate Your Savings
-              </h3>
-              <p className="text-lg text-professional-600">
-                See how much you can save compared to traditional solutions
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              {/* Calculator */}
-              <div className="space-y-6">
-                <div className="space-y-4">
-                  <label className="block text-sm font-medium text-primary-navy">
-                    Number of mailboxes needed
-                  </label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="100"
-                    defaultValue="20"
-                    className="w-full h-2 bg-professional-200 rounded-lg appearance-none cursor-pointer slider"
-                  />
-                  <div className="flex justify-between text-sm text-professional-600">
-                    <span>1</span>
-                    <span className="font-semibold">20 mailboxes</span>
-                    <span>100+</span>
-                  </div>
-                </div>
-
-                <div className="bg-professional-50 rounded-lg p-6 space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-professional-600">COLDINFRA (Monthly)</span>
-                    <span className="text-2xl font-bold text-success-green">$50/month</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-professional-600">Traditional Solution</span>
-                    <span className="text-2xl font-bold text-professional-600">$300/month</span>
-                  </div>
-                  <div className="border-t border-professional-200 pt-4">
-                    <div className="flex justify-between items-center">
-                      <span className="font-semibold text-primary-navy">Monthly Savings</span>
-                      <span className="text-2xl font-bold text-success-green">$250</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="font-semibold text-primary-navy">Annual Savings</span>
-                      <span className="text-2xl font-bold text-success-green">$3,000</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Benefits */}
-              <div className="space-y-6">
-                <h4 className="text-xl font-semibold text-primary-navy">
-                  What you get with COLDINFRA:
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    "83% cost reduction vs. traditional solutions",
-                    "10-minute setup vs. weeks of configuration",
-                    "98.7% deliverability vs. variable results",
-                    "24/7 expert support vs. DIY troubleshooting",
-                    "One-click export vs. vendor lock-in"
-                  ].map((benefit, index) => (
-                    <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-success-green mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-professional-600">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
           {/* Trust Indicators */}
           <div className="text-center space-y-8">
             <div className="flex flex-wrap items-center justify-center gap-6">
@@ -251,53 +327,59 @@ export function PricingSection() {
               <SecurityBadge type="ssl" />
               <SecurityBadge type="uptime" />
             </div>
-            
-            <p className="text-sm text-professional-600 max-w-2xl mx-auto">
-              All plans include our 30-day money-back guarantee, 99.9% uptime SLA, 
-              and enterprise-grade security. Cancel anytime with one-click data export.
+
+            <p className="text-sm text-slate-600 max-w-2xl mx-auto">
+              All plans include our 30-day money-back guarantee, 99.9% uptime SLA,
+              and enterprise-grade security.
             </p>
           </div>
 
           {/* FAQ Section */}
           <div className="space-y-8">
             <div className="text-center">
-              <h3 className="text-2xl lg:text-3xl font-bold text-primary-navy mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-4">
                 Frequently Asked Questions
               </h3>
-              <p className="text-lg text-professional-600">
+              <p className="text-lg text-slate-600">
                 Everything you need to know about our pricing and service
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-white rounded-lg p-6 shadow-sm border border-professional-200">
-                  <h4 className="text-lg font-semibold text-primary-navy mb-3">
-                    {faq.question}
-                  </h4>
-                  <p className="text-professional-600 leading-relaxed">
-                    {faq.answer}
-                  </p>
+                <div key={index} className="relative group">
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-trust-green/10 to-primary-teal/10 rounded-[24px] blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+
+                  {/* Glass Card */}
+                  <div className="relative bg-white/80 backdrop-blur-xl rounded-[24px] p-6 border border-slate-200/50 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] hover:shadow-[0_12px_48px_0_rgba(31,38,135,0.15)] transition-all duration-500">
+                    <h4 className="text-lg font-semibold text-slate-900 mb-3">
+                      {faq.question}
+                    </h4>
+                    <p className="text-slate-600 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Final CTA (Green Theme) */}
+          {/* Final CTA */}
           <div className="text-center space-y-6">
-            <h3 className="text-2xl font-bold text-text-primary">
-              Ready to Cut Technical Hassle?
+            <h3 className="text-2xl font-bold text-slate-900">
+              Ready to Start Sending?
             </h3>
-            <p className="text-lg text-text-secondary">
-              Join 6,000+ businesses landing in primary inbox with our expert DNS setup
+            <p className="text-lg text-slate-600">
+              Join 6,000+ businesses achieving 98.7% inbox delivery with expert DNS setup
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 size="lg"
-                onClick={() => handlePlanSelect('Growth', '$125')}
+                onClick={() => handlePlanSelect('Growth', '$84')}
                 className="bg-trust-green hover:bg-trust-green-dark text-white group px-8 py-6 text-lg"
               >
-                Start Free Trial
+                Get Started Now
                 <svg
                   className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"
@@ -308,7 +390,7 @@ export function PricingSection() {
                 </svg>
               </Button>
               <Button variant="outline" size="lg" className="border-trust-green text-trust-green hover:bg-trust-green/10 px-8 py-6 text-lg">
-                Book a Demo
+                Contact Sales
               </Button>
             </div>
           </div>
