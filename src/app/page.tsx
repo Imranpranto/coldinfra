@@ -4,7 +4,6 @@ import { HeroSectionModern } from '@/components/sections/HeroSectionModern'
 import { SocialProofSection } from '@/components/sections/SocialProofSection'
 import { FeaturesSection } from '@/components/sections/FeaturesSection'
 import { PricingSection } from '@/components/sections/PricingSection'
-import { ToolsSection } from '@/components/sections/ToolsSection'
 import { FAQSection } from '@/components/sections/FAQSection'
 import { Footer } from '@/components/sections/Footer'
 
@@ -40,16 +39,15 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       <main id="main-content">
         <HeroSectionModern />
         <SocialProofSection />
         <FeaturesSection />
         <PricingSection />
-        <ToolsSection />
         <FAQSection />
       </main>
-      
+
       <Footer />
     </div>
   )

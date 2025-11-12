@@ -115,6 +115,14 @@ export function Footer() {
                     </li>
                     <li>
                       <Link
+                        href="/refund-policy"
+                        className="text-sm text-slate-400 hover:text-trust-green transition-colors duration-200"
+                      >
+                        Refund & Cancellation
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         href="/contact"
                         className="text-sm text-slate-400 hover:text-trust-green transition-colors duration-200"
                       >
@@ -138,10 +146,10 @@ export function Footer() {
                     </li>
                     <li>
                       <Link
-                        href="/blog"
+                        href="/Resources"
                         className="text-sm text-slate-400 hover:text-trust-green transition-colors duration-200"
                       >
-                        Blog
+                        Resources
                       </Link>
                     </li>
                     <li>

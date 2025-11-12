@@ -27,8 +27,8 @@ export function Header({ className }: HeaderProps) {
   const navigationItems = [
     { name: 'Home', href: '#' },
     { name: 'Pricing', href: '#pricing' },
-    { name: 'Tools', href: '#tools' },
-    { name: 'Resources', href: '#resources' }
+    { name: 'Tools', href: '/tools' },
+    { name: 'Resources', href: '/resources' }
   ]
 
   return (
@@ -117,22 +117,24 @@ export function Header({ className }: HeaderProps) {
                 ))}
               </nav>
 
-              <Button
-                className={cn(
-                  "bg-gradient-to-r from-trust-green to-[#22c55e]",
-                  "hover:from-[#22c55e] hover:to-trust-green",
-                  "text-white font-semibold h-auto rounded-full",
-                  "shadow-lg shadow-trust-green/40 hover:shadow-trust-green/60",
-                  "hover:scale-110 transition-all duration-500",
-                  "ring-1 ring-trust-green/30 hover:ring-trust-green/50",
-                  "relative overflow-hidden group",
-                  isScrolled ? "px-6 py-1.5 text-[14px]" : "px-7 py-2 text-[15px]"
-                )}
-                style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
-              >
-                <span className="relative z-10">Book a Call</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-              </Button>
+              <Link href="/book-call">
+                <Button
+                  className={cn(
+                    "bg-gradient-to-r from-trust-green to-[#22c55e]",
+                    "hover:from-[#22c55e] hover:to-trust-green",
+                    "text-white font-semibold h-auto rounded-full",
+                    "shadow-lg shadow-trust-green/40 hover:shadow-trust-green/60",
+                    "hover:scale-110 transition-all duration-500",
+                    "ring-1 ring-trust-green/30 hover:ring-trust-green/50",
+                    "relative overflow-hidden group",
+                    isScrolled ? "px-6 py-1.5 text-[14px]" : "px-7 py-2 text-[15px]"
+                  )}
+                  style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+                >
+                  <span className="relative z-10">Book a Call</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -187,14 +189,15 @@ export function Header({ className }: HeaderProps) {
               ))}
 
               <div className="pt-3">
-                <Button
-                  className="w-full bg-gradient-to-r from-trust-green to-[#22c55e] hover:from-[#22c55e] hover:to-trust-green text-white font-semibold rounded-full shadow-lg shadow-trust-green/40 hover:shadow-trust-green/60 transition-all duration-500 ring-1 ring-trust-green/30 relative overflow-hidden group"
-                  onClick={() => setIsMenuOpen(false)}
-                  style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
-                >
-                  <span className="relative z-10">Book a Call</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                </Button>
+                <Link href="/book-call" className="block" onClick={() => setIsMenuOpen(false)}>
+                  <Button
+                    className="w-full bg-gradient-to-r from-trust-green to-[#22c55e] hover:from-[#22c55e] hover:to-trust-green text-white font-semibold rounded-full shadow-lg shadow-trust-green/40 hover:shadow-trust-green/60 transition-all duration-500 ring-1 ring-trust-green/30 relative overflow-hidden group"
+                    style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+                  >
+                    <span className="relative z-10">Book a Call</span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
