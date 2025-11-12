@@ -8,230 +8,139 @@ import { FAQSchema } from '@/components/StructuredData'
 export function FAQSection() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0)
 
-  const faqCategories = [
+  const faqs = [
     {
-      title: "Getting Started",
-      faqs: [
-        {
-          question: "How quickly can I get started with COLDINFRA?",
-          answer: "Your complete email infrastructure will be ready in approximately 10 minutes after signup. This includes Google Workspace setup, domain configuration, and email authentication. We recommend a 24-48 hour warming period for optimal deliverability before starting large campaigns."
-        },
-        {
-          question: "What technical knowledge do I need?",
-          answer: "None at all. COLDINFRA is designed for non-technical users. Our team handles all the complex DNS configurations, email authentication setup, and technical optimizations. You simply provide your domain preferences and we take care of everything else."
-        },
-        {
-          question: "Can I use my existing domains?",
-          answer: "Yes, you can use existing domains or we can help you acquire new ones. We'll audit your current domains for deliverability potential and provide recommendations. For maximum effectiveness, we often suggest dedicated domains for cold email campaigns."
-        },
-        {
-          question: "What if I already have Google Workspace?",
-          answer: "We can work with your existing Google Workspace setup or create new optimized accounts. Our team will assess your current configuration and recommend the best approach for cold email deliverability while maintaining your existing business email setup."
-        }
-      ]
+      question: "What sending tools do you integrate with?",
+      answer: "We integrate with all major email sequencers including Instantly, Smartlead, Lemlist, Email Bison, Reachinbox, and more. Our Google Workspace setup works seamlessly with your preferred cold email tools."
     },
     {
-      title: "Pricing & Plans",
-      faqs: [
-        {
-          question: "Are there any hidden fees or setup costs?",
-          answer: "No hidden fees whatsoever. Our pricing is completely transparent at $2.50 per mailbox per month. This includes setup, configuration, ongoing support, and access to all 13 tools. The only additional cost might be domain registration if you need new domains."
-        },
-        {
-          question: "Can I change plans or cancel anytime?",
-          answer: "Yes, you can upgrade, downgrade, or cancel your plan at any time. There are no long-term contracts or cancellation fees. If you cancel, you retain full access to your data with our one-click export feature."
-        },
-        {
-          question: "Do you offer volume discounts?",
-          answer: "Enterprise customers with 100+ mailboxes receive custom pricing with additional volume discounts. Contact our sales team for a personalized quote that can include dedicated account management and custom SLAs."
-        },
-        {
-          question: "What's included in the 30-day money-back guarantee?",
-          answer: "If you're not completely satisfied within 30 days, we'll refund your full payment. This gives you risk-free time to test our service and see the deliverability improvements firsthand."
-        }
-      ]
+      question: "Are domains included in the package, or do I need to buy them myself?",
+      answer: "Domains are not included in the package. You need to purchase domains separately. We can guide you on the best domain providers and help with the setup process."
     },
     {
-      title: "Technical & Deliverability",
-      faqs: [
-        {
-          question: "How do you achieve 98.7% deliverability rates?",
-          answer: "We use a combination of optimal domain configuration, proper email authentication (SPF, DMARC, DKIM), strategic IP warming, reputation monitoring, and ongoing deliverability optimization. Our team continuously monitors and adjusts configurations based on the latest best practices."
-        },
-        {
-          question: "What email authentication do you set up?",
-          answer: "We configure complete email authentication including SPF records, DMARC policies, DKIM signatures, and additional deliverability optimizations. All authentication is properly configured for your specific domains and sending patterns."
-        },
-        {
-          question: "How do you handle email warming?",
-          answer: "We implement strategic warming sequences that gradually increase sending volume while maintaining engagement metrics. This includes automated warm-up campaigns, reputation building, and ongoing monitoring to ensure optimal deliverability."
-        },
-        {
-          question: "Can I monitor my deliverability metrics?",
-          answer: "Yes, you'll have access to detailed deliverability analytics including inbox placement rates, spam folder rates, bounce rates, and reputation scores. We provide regular reports and recommendations for ongoing optimization."
-        }
-      ]
+      question: "Can I use domains I've previously used, or do I need new ones?",
+      answer: "We strongly recommend using new domains for cold email campaigns. Previously used domains may have existing reputation issues that could affect deliverability. Fresh domains allow us to build optimal sender reputation from the ground up."
     },
     {
-      title: "Support & Security",
-      faqs: [
-        {
-          question: "What level of support do you provide?",
-          answer: "All plans include email support with responses within 24 hours. Growth and Enterprise plans include priority support with faster response times. Enterprise customers also get dedicated account managers and phone support."
-        },
-        {
-          question: "Is my data secure with COLDINFRA?",
-          answer: "Yes, we maintain enterprise-grade security with SOC 2 Type II compliance, GDPR compliance, and industry-standard encryption. Your data is protected with the same security measures used by Fortune 500 companies."
-        },
-        {
-          question: "What happens to my data if I leave?",
-          answer: "You maintain full ownership of your data. Our one-click export feature allows you to download all configurations, settings, and data in standard formats. There's no vendor lock-in, and we'll assist with migration if needed."
-        },
-        {
-          question: "Do you provide training or onboarding?",
-          answer: "Yes, we provide comprehensive onboarding for all customers and specialized training for Enterprise clients. This includes best practices guidance, campaign optimization tips, and ongoing support to maximize your success."
-        }
-      ]
+      question: "Does COLDINFRA offer Google and Microsoft accounts?",
+      answer: "Yes, we offer both Google Workspace and Microsoft 365 accounts. Our expert team handles the complete setup and configuration for either platform based on your preference."
     }
   ]
 
-  const allFAQs = faqCategories.flatMap(category => category.faqs)
-
   return (
-    <Section background="gray" padding="xl">
-      <Container>
+    <Section background="default" padding="xl" className="relative overflow-hidden">
+      {/* Modern Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-green-50/30" />
+
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+      <Container className="relative z-10">
         <div className="space-y-12">
-          {/* Section Header (Green Theme) */}
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold text-text-primary">
-              Questions About DNS Setup & Affordability
-              <span className="block mt-2 text-trust-green">
-                Expert Answers on Primary Inbox Delivery
-              </span>
+          {/* Section Header */}
+          <div className="text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-trust-green/10 rounded-full mb-2">
+              <div className="w-2 h-2 bg-trust-green rounded-full animate-pulse" />
+              <span className="text-sm font-semibold text-trust-green">FAQ</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">
+              Frequently Asked Questions
             </h2>
-            <p className="text-xl text-text-secondary">
-              Everything about cutting technical hassle with $2.50/mailbox Google Workspace
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Everything you need to know about our service
             </p>
           </div>
 
-          {/* FAQ Categories */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {faqCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="space-y-6">
-                {/* Category Header */}
-                <div className="bg-white rounded-lg p-6 shadow-sm border border-professional-200">
-                  <h3 className="text-xl font-semibold text-primary-navy flex items-center">
-                    <span className="w-8 h-8 bg-trust-green text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
-                      {categoryIndex + 1}
-                    </span>
-                    {category.title}
-                  </h3>
-                </div>
+          {/* FAQ Items - Modern Single Column */}
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="relative group">
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-trust-green/10 via-primary-teal/10 to-trust-green/10 rounded-[24px] blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
 
-                {/* FAQ Items */}
-                <div className="space-y-4">
-                  {category.faqs.map((faq, faqIndex) => {
-                    const globalIndex = faqCategories
-                      .slice(0, categoryIndex)
-                      .reduce((acc, cat) => acc + cat.faqs.length, 0) + faqIndex
-                    
-                    return (
-                      <div
-                        key={faqIndex}
-                        className="bg-white rounded-lg shadow-sm border border-professional-200 overflow-hidden"
-                      >
-                        <button
-                          className="w-full text-left p-6 hover:bg-professional-50 transition-colors duration-200"
-                          onClick={() => setOpenFAQ(openFAQ === globalIndex ? null : globalIndex)}
-                          aria-expanded={openFAQ === globalIndex}
-                        >
-                          <div className="flex items-center justify-between">
-                            <h4 className="text-lg font-semibold text-primary-navy pr-4">
-                              {faq.question}
-                            </h4>
-                            <svg
-                              className={cn(
-                                "w-5 h-5 text-trust-green transition-transform duration-200 flex-shrink-0",
-                                openFAQ === globalIndex ? "transform rotate-180" : ""
-                              )}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </div>
-                        </button>
-                        
-                        {openFAQ === globalIndex && (
-                          <div className="px-6 pb-6 animate-slide-down">
-                            <div className="border-t border-professional-200 pt-4">
-                              <p className="text-professional-600 leading-relaxed">
-                                {faq.answer}
-                              </p>
-                            </div>
-                          </div>
+                {/* Glass Card */}
+                <div className="relative bg-white/80 backdrop-blur-xl rounded-[24px] border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] overflow-hidden">
+                  <button
+                    className="w-full text-left p-6 hover:bg-slate-50/50 transition-colors duration-200"
+                    onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                    aria-expanded={openFAQ === index}
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <h4 className="text-lg font-semibold text-slate-900">
+                        {faq.question}
+                      </h4>
+                      <svg
+                        className={cn(
+                          "w-5 h-5 text-trust-green transition-transform duration-300 flex-shrink-0",
+                          openFAQ === index ? "transform rotate-180" : ""
                         )}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  {openFAQ === index && (
+                    <div className="px-6 pb-6 animate-slide-down">
+                      <div className="border-t border-slate-200/50 pt-4">
+                        <p className="text-slate-600 leading-relaxed">
+                          {faq.answer}
+                        </p>
                       </div>
-                    )
-                  })}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Still Have Questions Section (Green Theme) */}
-          <div className="bg-white rounded-2xl p-8 lg:p-12 text-center shadow-lg border border-success-green/20">
-            <div className="space-y-6 max-w-2xl mx-auto">
-              <div className="w-16 h-16 bg-trust-green rounded-full flex items-center justify-center mx-auto">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
+          {/* Still Have Questions Section */}
+          <div className="relative group max-w-3xl mx-auto">
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-trust-green/20 via-primary-teal/20 to-trust-green/20 rounded-[32px] blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
 
-              <div>
-                <h3 className="text-2xl font-bold text-text-primary mb-3">
-                  Need DNS Setup Help?
-                </h3>
-                <p className="text-lg text-text-secondary">
-                  Our DNS experts are here 24/7 to help you land in primary inbox.
-                  Get answers about breaking spam restrictions and cutting technical hassle.
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
-                  href="mailto:support@coldinfra.com"
-                  className="inline-flex items-center px-6 py-3 bg-trust-green text-white font-semibold rounded-lg hover:bg-trust-green-dark transition-colors duration-200"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            {/* Glass Card */}
+            <div className="relative bg-white/80 backdrop-blur-2xl rounded-[32px] p-8 lg:p-12 text-center border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
+              <div className="space-y-6">
+                <div className="w-16 h-16 bg-trust-green rounded-full flex items-center justify-center mx-auto">
+                  <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  Email DNS Experts
-                </a>
+                </div>
 
-                <a
-                  href="#"
-                  className="inline-flex items-center px-6 py-3 bg-white text-trust-green font-semibold rounded-lg border-2 border-trust-green hover:bg-trust-green hover:text-white transition-colors duration-200"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
-                  </svg>
-                  Live Chat
-                </a>
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">
+                    Still Have Questions?
+                  </h3>
+                  <p className="text-lg text-slate-600">
+                    Our team is here to help you get started with COLDINFRA
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <a
+                    href="mailto:support@coldinfra.com"
+                    className="inline-flex items-center px-6 py-3 bg-trust-green text-white font-semibold rounded-xl hover:bg-trust-green-dark transition-colors duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    Contact Support
+                  </a>
+                </div>
               </div>
-
-              <p className="text-sm text-text-secondary">
-                Average response time: <strong>2 hours</strong> • DNS experts available 24/7
-              </p>
             </div>
           </div>
         </div>
       </Container>
 
       {/* FAQ Schema for SEO */}
-      <FAQSchema faqs={allFAQs} />
+      <FAQSchema faqs={faqs} />
     </Section>
   )
 }

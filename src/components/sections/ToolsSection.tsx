@@ -191,68 +191,6 @@ export function ToolsSection() {
               </Card>
             ))}
           </Grid>
-
-          {/* Tools CTA Section (Green BG) */}
-          <div className="bg-gradient-to-br from-trust-green via-primary-mint to-trust-green-dark rounded-2xl p-8 lg:p-12 text-center text-white shadow-xl">
-            <div className="space-y-6 max-w-3xl mx-auto">
-              <h3 className="text-2xl lg:text-3xl font-bold">
-                Cut Technical Hassle with 13 Free Tools
-              </h3>
-              <p className="text-xl opacity-90">
-                Get instant access to DNS generators, cost calculators, and deliverability analyzers.
-                Save hours optimizing for primary inbox delivery at $2.50/mailbox.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button variant="secondary" size="lg" className="bg-white text-trust-green hover:bg-professional-50 px-8 py-6 text-lg">
-                  Start Free Trial
-                </Button>
-                <Button variant="ghost" size="lg" className="text-white border-white hover:bg-white hover:text-trust-green px-8 py-6 text-lg">
-                  View All Tools
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Integration Section */}
-          <div className="space-y-8">
-            <div className="text-center space-y-4">
-              <h3 className="text-2xl lg:text-3xl font-bold text-primary-navy">
-                Seamless Integrations
-              </h3>
-              <p className="text-lg text-professional-600">
-                Connect with your favorite email platforms and CRM systems
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60 hover:opacity-80 transition-opacity duration-300">
-              {[
-                'Instantly',
-                'Apollo',
-                'Outreach',
-                'SalesLoft',
-                'HubSpot',
-                'Salesforce',
-                'Lemlist',
-                'Woodpecker',
-                'Reply.io',
-                'Mixmax',
-                'Mailshake',
-                'Smartlead'
-              ].map((platform) => (
-                <div key={platform} className="h-12 w-20 bg-professional-100 rounded flex items-center justify-center hover:bg-professional-200 transition-colors duration-200">
-                  <span className="text-xs font-medium text-professional-600 text-center">
-                    {platform}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <p className="text-sm text-professional-600">
-                Can't find your platform? We support custom integrations for Enterprise customers.
-              </p>
-            </div>
-          </div>
         </div>
       </Container>
     </Section>

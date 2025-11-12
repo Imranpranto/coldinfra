@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Slider } from '@/components/ui/slider'
 import { Badge } from '@/components/ui/badge'
 import { trackEvent, cn } from '@/lib/utils'
-import { ArrowRight, Check, Sparkles, TrendingUp } from 'lucide-react'
+import { ArrowRight, Check, Settings, Sparkles, TrendingUp } from 'lucide-react'
 
 interface PricingCalculation {
   mailboxCount: number
@@ -137,9 +137,11 @@ export function HeroSectionModern() {
               {/* Value Props with Modern Icons */}
               <div className="space-y-3">
                 {[
+                  { text: 'Integrations with Instantly, Smartlead, EmailBison, Lemlist, and More', icon: Settings },
                   { text: 'Google Workspace at 57-64% off retail', icon: TrendingUp },
                   { text: 'Expert cold email infrastructure setup', icon: Sparkles },
                   { text: 'Primary inbox delivery guaranteed', icon: Check }
+                  
                 ].map((prop, index) => {
                   const Icon = prop.icon
                   return (
