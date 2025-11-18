@@ -4,10 +4,11 @@ import { useState, useRef } from 'react'
 import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
 import { Container, Section } from '@/components/ui/Container'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
-import { Download, DollarSign, Users, Award, TrendingUp } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Download, DollarSign, Users, Award, TrendingUp, ArrowRight, Mail } from 'lucide-react'
 import html2canvas from 'html2canvas'
 
 interface CompensationResults {
@@ -104,124 +105,119 @@ export default function CompensationCalculatorPage() {
   }
 
   return (
-    <>
-      <Header />
-      <main id="main-content">
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-slate-100 relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+    <div className="relative min-h-screen bg-white">
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-          {/* Gradient Orbs */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-r from-trust-green/20 to-emerald-600/20 rounded-full blur-3xl" />
+      <div className="relative z-10">
+        <Header />
 
-          <div className="relative z-10 container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-xl border border-white/20 rounded-full mb-6">
-            <DollarSign className="w-4 h-4 text-trust-green" />
-            <span className="text-sm font-medium text-slate-700">Compensation Calculator</span>
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-trust-green via-emerald-600 to-trust-green-dark bg-clip-text text-transparent">
-            Sales Compensation Calculator
-          </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Design and analyze sales compensation plans
-          </p>
-        </div>
-
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {/* Input Section */}
-          <div className="space-y-6">
-            {/* Role Configuration */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-              <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-2xl flex items-center gap-2">
-                    <Users className="w-6 h-6 text-trust-green" />
-                    Role Configuration
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Sales Role
-                    </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {SALES_ROLES.map((role) => (
-                        <button
-                          key={role}
-                          onClick={() => setSalesRole(role)}
-                          className={`px-3 py-2 rounded-xl font-medium transition-all text-sm ${
-                            salesRole === role
-                              ? 'bg-gradient-to-r from-trust-green to-emerald-600 text-white shadow-lg'
-                              : 'bg-white/50 text-slate-700 hover:bg-white/80'
-                          }`}
-                        >
-                          {role}
-                        </button>
-                      ))}
-                    </div>
+        <main id="main-content">
+          <Section padding="xl" className="bg-transparent">
+            <Container>
+              <div className="max-w-6xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-trust-green/10 rounded-full mb-4">
+                    <div className="w-2 h-2 bg-trust-green rounded-full animate-pulse" />
+                    <span className="text-sm font-semibold text-trust-green">Free Calculator Tool</span>
                   </div>
+                  <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+                    Sales Compensation Calculator
+                  </h1>
+                  <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Design competitive sales compensation plans with accurate OTE calculations and commission structures.
+                  </p>
+                </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Territory Level
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {TERRITORY_LEVELS.map((level) => (
-                        <button
-                          key={level}
-                          onClick={() => setTerritoryLevel(level)}
-                          className={`px-2 py-2 rounded-xl font-medium transition-all text-xs ${
-                            territoryLevel === level
-                              ? 'bg-gradient-to-r from-trust-green to-emerald-600 text-white shadow-lg'
-                              : 'bg-white/50 text-slate-700 hover:bg-white/80'
-                          }`}
-                        >
-                          {level}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Input Form */}
+                  <div className="relative">
+                    {/* Glow Effect */}
+                    <div className="absolute -inset-4 bg-gradient-to-r from-trust-green/20 to-emerald-500/20 rounded-3xl blur-2xl opacity-50" />
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Product Complexity
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {PRODUCT_COMPLEXITY.map((complexity) => (
-                        <button
-                          key={complexity}
-                          onClick={() => setProductComplexity(complexity)}
-                          className={`px-3 py-2 rounded-xl font-medium transition-all text-sm ${
-                            productComplexity === complexity
-                              ? 'bg-gradient-to-r from-trust-green to-emerald-600 text-white shadow-lg'
-                              : 'bg-white/50 text-slate-700 hover:bg-white/80'
-                          }`}
-                        >
-                          {complexity}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                    <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10">
+                      <CardHeader className="space-y-1 pb-4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-10 h-10 bg-gradient-to-br from-trust-green to-emerald-600 rounded-xl flex items-center justify-center">
+                            <DollarSign className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <CardTitle className="text-2xl font-bold text-slate-900">
+                              Compensation Plan
+                            </CardTitle>
+                            <CardDescription className="text-slate-600">
+                              Configure compensation structure
+                            </CardDescription>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-5">
+                        {/* Role Configuration */}
+                        <div>
+                          <label className="block text-sm font-medium text-slate-700 mb-2">
+                            Sales Role
+                          </label>
+                          <div className="grid grid-cols-2 sm:grid-cols-2 gap-2">
+                            {SALES_ROLES.map((role) => (
+                              <button
+                                key={role}
+                                onClick={() => setSalesRole(role)}
+                                className={`px-3 py-3 sm:py-2 rounded-xl font-medium transition-all text-sm ${
+                                  salesRole === role
+                                    ? 'bg-gradient-to-r from-trust-green to-emerald-600 text-white shadow-lg'
+                                    : 'bg-white/50 text-slate-700 hover:bg-white/80 border border-slate-200'
+                                }`}
+                              >
+                                {role}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
 
-            {/* Compensation Structure */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-              <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-2xl flex items-center gap-2">
-                    <DollarSign className="w-6 h-6 text-trust-green" />
-                    Compensation Structure
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
+                        <div>
+                          <label className="block text-sm font-medium text-slate-700 mb-2">
+                            Territory Level
+                          </label>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            {TERRITORY_LEVELS.map((level) => (
+                              <button
+                                key={level}
+                                onClick={() => setTerritoryLevel(level)}
+                                className={`px-2 py-3 sm:py-2 rounded-xl font-medium transition-all text-xs ${
+                                  territoryLevel === level
+                                    ? 'bg-gradient-to-r from-trust-green to-emerald-600 text-white shadow-lg'
+                                    : 'bg-white/50 text-slate-700 hover:bg-white/80 border border-slate-200'
+                                }`}
+                              >
+                                {level}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-slate-700 mb-2">
+                            Product Complexity
+                          </label>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            {PRODUCT_COMPLEXITY.map((complexity) => (
+                              <button
+                                key={complexity}
+                                onClick={() => setProductComplexity(complexity)}
+                                className={`px-3 py-3 sm:py-2 rounded-xl font-medium transition-all text-sm ${
+                                  productComplexity === complexity
+                                    ? 'bg-gradient-to-r from-trust-green to-emerald-600 text-white shadow-lg'
+                                    : 'bg-white/50 text-slate-700 hover:bg-white/80 border border-slate-200'
+                                }`}
+                              >
+                                {complexity}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Compensation Sliders */}
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">
                       Base Salary: {formatCurrency(baseSalary[0])}
@@ -318,47 +314,88 @@ export default function CompensationCalculatorPage() {
                     </p>
                   </div>
 
-                  <Button
-                    onClick={calculateCompensation}
-                    className="w-full bg-gradient-to-r from-trust-green to-emerald-600 hover:from-emerald-600 hover:to-trust-green text-white shadow-lg hover:shadow-xl transition-all"
-                    size="lg"
-                  >
-                    <DollarSign className="w-5 h-5 mr-2" />
-                    Calculate Compensation Plan
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* Results Section */}
-          <div className="space-y-6">
-            {results ? (
-              <>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-                  <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <CardTitle className="text-2xl flex items-center gap-2">
-                          <Award className="w-6 h-6 text-trust-green" />
-                          Compensation Plan
-                        </CardTitle>
                         <Button
-                          onClick={handleDownload}
-                          variant="outline"
-                          size="sm"
-                          className="border-trust-green/30 hover:bg-trust-green/10"
+                          onClick={calculateCompensation}
+                          className="w-full bg-gradient-to-r from-trust-green to-emerald-600 hover:from-emerald-600 hover:to-trust-green text-white shadow-lg hover:shadow-xl transition-all"
+                          size="lg"
                         >
-                          <Download className="w-4 h-4" />
+                          <DollarSign className="w-5 h-5 mr-2" />
+                          Calculate Compensation Plan
                         </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Results Section */}
+                  <div className="space-y-6">
+                    {/* Row 1: Summary Stats (only show when results calculated) */}
+                    {results && (
+                      <div className="relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
+
+                        <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10">
+                          <CardHeader className="pb-3">
+                            <CardTitle className="text-lg font-semibold text-slate-900">
+                              Plan Summary
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                              <div className="text-center p-3 bg-white/50 rounded-lg border border-slate-100">
+                                <div className="text-2xl font-bold text-trust-green">{formatCurrency(results.ote)}</div>
+                                <div className="text-xs text-slate-600 mt-1">OTE</div>
+                              </div>
+                              <div className="text-center p-3 bg-white/50 rounded-lg border border-slate-100">
+                                <div className="text-2xl font-bold text-emerald-600">{formatCurrency(results.quota)}</div>
+                                <div className="text-xs text-slate-600 mt-1">Annual Quota</div>
+                              </div>
+                              <div className="text-center p-3 bg-white/50 rounded-lg border border-slate-100">
+                                <div className="text-2xl font-bold text-blue-600">{salesRole}</div>
+                                <div className="text-xs text-slate-600 mt-1">Role</div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
                       </div>
-                    </CardHeader>
+                    )}
+
+                    {/* Row 2: Detailed Results */}
+                    {results ? (
+                      <div className="relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
+
+                        <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10">
+                          <CardHeader className="space-y-1 pb-4">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <div className="w-10 h-10 bg-gradient-to-br from-trust-green to-emerald-600 rounded-xl flex items-center justify-center">
+                                  <Award className="w-5 h-5 text-white" />
+                                </div>
+                                <div>
+                                  <CardTitle className="text-2xl font-bold text-slate-900">
+                                    Compensation Details
+                                  </CardTitle>
+                                  <CardDescription className="text-slate-600">
+                                    Detailed compensation breakdown
+                                  </CardDescription>
+                                </div>
+                              </div>
+                              <Button
+                                onClick={handleDownload}
+                                variant="outline"
+                                size="sm"
+                                className="border-trust-green/30 hover:bg-trust-green/10 text-trust-green"
+                              >
+                                <Download className="w-4 h-4 mr-2" />
+                                Export
+                              </Button>
+                            </div>
+                          </CardHeader>
                     <CardContent>
                       <div ref={resultsRef} className="space-y-6">
                         {/* Key Metrics Grid */}
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="col-span-2 p-6 bg-gradient-to-br from-trust-green/20 to-emerald-600/20 rounded-xl border-2 border-trust-green/30">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="sm:col-span-2 p-6 bg-gradient-to-br from-trust-green/20 to-emerald-600/20 rounded-xl border-2 border-trust-green/30">
                             <div className="flex items-center gap-2 mb-2">
                               <DollarSign className="w-5 h-5 text-trust-green" />
                               <p className="text-sm font-medium text-slate-600">On-Target Earnings (OTE)</p>
@@ -451,59 +488,74 @@ export default function CompensationCalculatorPage() {
                           </p>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                    ) : (
+                      <div className="relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
 
-                {/* Plan Summary */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-                  <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                    <CardHeader>
-                      <CardTitle className="text-xl">Plan Summary</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3 text-sm">
-                        <div className="flex items-center justify-between p-3 bg-white/50 rounded-lg">
-                          <span className="text-slate-600">Role</span>
-                          <span className="font-semibold text-slate-800">{salesRole}</span>
-                        </div>
-                        <div className="flex items-center justify-between p-3 bg-white/50 rounded-lg">
-                          <span className="text-slate-600">Territory</span>
-                          <span className="font-semibold text-slate-800">{territoryLevel}</span>
-                        </div>
-                        <div className="flex items-center justify-between p-3 bg-white/50 rounded-lg">
-                          <span className="text-slate-600">Product Complexity</span>
-                          <span className="font-semibold text-slate-800">{productComplexity}</span>
-                        </div>
-                        <div className="flex items-center justify-between p-3 bg-white/50 rounded-lg">
-                          <span className="text-slate-600">Commission Rate</span>
-                          <span className="font-semibold text-slate-800">{commissionRate[0]}%</span>
-                        </div>
+                        <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10 h-full flex items-center justify-center min-h-[400px]">
+                          <div className="text-center py-16">
+                            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                              <DollarSign className="w-8 h-8 text-slate-400" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                              No plan calculated yet
+                            </h3>
+                            <p className="text-slate-500 text-sm">
+                              Configure your compensation structure and calculate the plan
+                            </p>
+                          </div>
+                        </Card>
                       </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </>
-            ) : (
-              <div className="relative h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-                <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl h-full flex items-center justify-center min-h-[400px]">
-                  <div className="text-center py-12">
-                    <DollarSign className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-                    <p className="text-slate-500">
-                      Configure compensation structure to see plan details
-                    </p>
+                    )}
                   </div>
-                </Card>
+                </div>
               </div>
-            )}
-          </div>
-        </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </>
+            </Container>
+          </Section>
+
+          {/* CTA Section */}
+          <Section padding="lg" className="bg-transparent">
+            <Container>
+              <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-trust-green to-trust-green-dark rounded-2xl p-8 lg:p-12 text-white">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                  Need Help Setting Up Your Sales Comp Plan?
+                </h2>
+                <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                  Get expert guidance on designing competitive compensation structures that attract top sales talent.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-white text-trust-green hover:bg-white/90 shadow-lg hover:shadow-xl transition-all"
+                  >
+                    <a href="/book-call">
+                      Book a Call
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    <a href="/tools">
+                      <Mail className="mr-2 w-5 h-5" />
+                      More Tools
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </Container>
+          </Section>
+        </main>
+
+        <Footer />
+      </div>
+    </div>
   )
 }

@@ -4,10 +4,11 @@ import { useState, useRef } from 'react'
 import { Header } from '@/components/sections/Header'
 import { Footer } from '@/components/sections/Footer'
 import { Container, Section } from '@/components/ui/Container'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
-import { Download, TrendingUp, Target, DollarSign, Percent } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Download, TrendingUp, Target, DollarSign, Percent, ArrowRight, Mail } from 'lucide-react'
 import html2canvas from 'html2canvas'
 
 interface ForecastResults {
@@ -129,46 +130,53 @@ export default function ForecastingCalculatorPage() {
   }
 
   return (
-    <>
-      <Header />
-      <main id="main-content">
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-slate-100 relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+    <div className="relative min-h-screen bg-white">
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-          {/* Gradient Orbs */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-r from-trust-green/20 to-emerald-600/20 rounded-full blur-3xl" />
+      <div className="relative z-10">
+        <Header />
 
-          <div className="relative z-10 container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-xl border border-white/20 rounded-full mb-6">
-            <TrendingUp className="w-4 h-4 text-trust-green" />
-            <span className="text-sm font-medium text-slate-700">Forecasting Calculator</span>
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-trust-green via-emerald-600 to-trust-green-dark bg-clip-text text-transparent">
-            Sales Forecasting Calculator
-          </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Forecast future sales revenue based on pipeline metrics and growth trends
-          </p>
-        </div>
+        <main id="main-content">
+          <Section padding="xl" className="bg-transparent">
+            <Container>
+              <div className="max-w-6xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-trust-green/10 rounded-full mb-4">
+                    <div className="w-2 h-2 bg-trust-green rounded-full animate-pulse" />
+                    <span className="text-sm font-semibold text-trust-green">Free Calculator Tool</span>
+                  </div>
+                  <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+                    Sales Forecasting Calculator
+                  </h1>
+                  <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Predict future revenue with accuracy using pipeline metrics and growth trends.
+                  </p>
+                </div>
 
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {/* Input Section */}
-          <div className="space-y-6">
-            {/* Current Performance */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-              <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-2xl flex items-center gap-2">
-                    <DollarSign className="w-6 h-6 text-trust-green" />
-                    Current Performance
-                  </CardTitle>
-                </CardHeader>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Input Form */}
+                  <div className="relative">
+                    {/* Glow Effect */}
+                    <div className="absolute -inset-4 bg-gradient-to-r from-trust-green/20 to-emerald-500/20 rounded-3xl blur-2xl opacity-50" />
+
+                    <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10">
+                      <CardHeader className="space-y-1 pb-4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-10 h-10 bg-gradient-to-br from-trust-green to-emerald-600 rounded-xl flex items-center justify-center">
+                            <TrendingUp className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <CardTitle className="text-2xl font-bold text-slate-900">
+                              Forecast Inputs
+                            </CardTitle>
+                            <CardDescription className="text-slate-600">
+                              Enter your sales metrics
+                            </CardDescription>
+                          </div>
+                        </div>
+                      </CardHeader>
                 <CardContent className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -205,21 +213,8 @@ export default function ForecastingCalculatorPage() {
                       <span>50%</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
 
-            {/* Pipeline Metrics */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-              <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-2xl flex items-center gap-2">
-                    <Target className="w-6 h-6 text-trust-green" />
-                    Pipeline Metrics
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
+                  {/* Pipeline Metrics Section */}
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">
                       Number of Opportunities: {numOpportunities[0]}
@@ -282,34 +277,86 @@ export default function ForecastingCalculatorPage() {
                     <TrendingUp className="w-5 h-5 mr-2" />
                     Generate Sales Forecast
                   </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+                      </CardContent>
+                    </Card>
+                  </div>
 
-          {/* Results Section */}
-          <div className="space-y-6">
-            {results ? (
-              <>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-                  <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <CardTitle className="text-2xl flex items-center gap-2">
-                          <TrendingUp className="w-6 h-6 text-trust-green" />
-                          Forecast Results
-                        </CardTitle>
-                        <Button
-                          onClick={handleDownload}
-                          variant="outline"
-                          size="sm"
-                          className="border-trust-green/30 hover:bg-trust-green/10"
-                        >
-                          <Download className="w-4 h-4" />
-                        </Button>
+                  {/* Results Section */}
+                  <div className="space-y-6">
+                    {/* Row 1: Summary Stats (only show when results calculated) */}
+                    {results && (
+                      <div className="relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
+
+                        <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10">
+                          <CardHeader className="pb-3">
+                            <CardTitle className="text-lg font-semibold text-slate-900">
+                              Forecast Summary
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                              <div className="text-center p-3 bg-white/50 rounded-lg border border-slate-100">
+                                <div className="text-2xl font-bold text-trust-green">{formatCurrency(results.totalForecast)}</div>
+                                <div className="text-xs text-slate-600 mt-1">Total Forecast</div>
+                              </div>
+                              <div className="text-center p-3 bg-white/50 rounded-lg border border-slate-100">
+                                <div className="text-2xl font-bold text-emerald-600">{results.growthRate}%</div>
+                                <div className="text-xs text-slate-600 mt-1">Growth Rate</div>
+                              </div>
+                              <div className="text-center p-3 bg-white/50 rounded-lg border border-slate-100">
+                                <Badge
+                                  variant={results.confidenceLevel === 'High' ? 'default' : results.confidenceLevel === 'Medium' ? 'secondary' : 'outline'}
+                                  className={`text-sm ${
+                                    results.confidenceLevel === 'High'
+                                      ? 'bg-trust-green text-white'
+                                      : results.confidenceLevel === 'Medium'
+                                      ? 'bg-emerald-500 text-white'
+                                      : 'bg-slate-200 text-slate-700'
+                                  }`}
+                                >
+                                  {results.confidenceLevel}
+                                </Badge>
+                                <div className="text-xs text-slate-600 mt-1">Confidence</div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
                       </div>
-                    </CardHeader>
+                    )}
+
+                    {/* Row 2: Detailed Results */}
+                    {results ? (
+                      <div className="relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
+
+                        <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10">
+                          <CardHeader className="space-y-1 pb-4">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <div className="w-10 h-10 bg-gradient-to-br from-trust-green to-emerald-600 rounded-xl flex items-center justify-center">
+                                  <TrendingUp className="w-5 h-5 text-white" />
+                                </div>
+                                <div>
+                                  <CardTitle className="text-2xl font-bold text-slate-900">
+                                    Forecast Details
+                                  </CardTitle>
+                                  <CardDescription className="text-slate-600">
+                                    Revenue predictions and insights
+                                  </CardDescription>
+                                </div>
+                              </div>
+                              <Button
+                                onClick={handleDownload}
+                                variant="outline"
+                                size="sm"
+                                className="border-trust-green/30 hover:bg-trust-green/10 text-trust-green"
+                              >
+                                <Download className="w-4 h-4 mr-2" />
+                                Export
+                              </Button>
+                            </div>
+                          </CardHeader>
                     <CardContent>
                       <div ref={resultsRef} className="space-y-6">
                         {/* Total Forecast */}
@@ -333,7 +380,7 @@ export default function ForecastingCalculatorPage() {
                         </div>
 
                         {/* Breakdown Grid */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="p-4 bg-gradient-to-br from-blue-500/10 to-trust-green/10 rounded-xl border border-blue-500/20">
                             <div className="flex items-center gap-2 mb-2">
                               <TrendingUp className="w-4 h-4 text-blue-600" />
@@ -415,52 +462,89 @@ export default function ForecastingCalculatorPage() {
                             </div>
                           </div>
                         </div>
+                        {/* Insights */}
+                        <div className="p-4 bg-white/50 backdrop-blur-sm border border-slate-200 rounded-xl">
+                          <h4 className="font-semibold text-slate-800 mb-3">Forecast Insights</h4>
+                          <ul className="space-y-3">
+                            {results.insights.map((insight, index) => (
+                              <li key={index} className="flex gap-3 text-sm text-slate-700">
+                                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-trust-green text-white flex items-center justify-center text-xs font-bold">
+                                  {index + 1}
+                                </span>
+                                <span>{insight}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    ) : (
+                      <div className="relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
 
-                {/* Insights */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-                  <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl">
-                    <CardHeader>
-                      <CardTitle className="text-xl">Forecast Insights</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3">
-                        {results.insights.map((insight, index) => (
-                          <li key={index} className="flex gap-3 text-sm text-slate-700">
-                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-trust-green text-white flex items-center justify-center text-xs font-bold">
-                              {index + 1}
-                            </span>
-                            <span>{insight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-              </>
-            ) : (
-              <div className="relative h-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-trust-green/20 rounded-3xl blur-2xl opacity-50" />
-                <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-xl h-full flex items-center justify-center min-h-[400px]">
-                  <div className="text-center py-12">
-                    <TrendingUp className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-                    <p className="text-slate-500">
-                      Enter your sales metrics to generate forecast
-                    </p>
+                        <Card className="relative bg-white/70 backdrop-blur-xl border-white/20 shadow-2xl shadow-slate-900/10 h-full flex items-center justify-center min-h-[400px]">
+                          <div className="text-center py-16">
+                            <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                              <TrendingUp className="w-8 h-8 text-slate-400" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                              No forecast generated yet
+                            </h3>
+                            <p className="text-slate-500 text-sm">
+                              Enter your sales metrics and generate a forecast
+                            </p>
+                          </div>
+                        </Card>
+                      </div>
+                    )}
                   </div>
-                </Card>
+                </div>
               </div>
-            )}
-          </div>
-        </div>
-          </div>  {/* Close container */}
-        </div>  {/* Close min-h-screen */}
-      </main>
-      <Footer />
-    </>
+            </Container>
+          </Section>
+
+          {/* CTA Section */}
+          <Section padding="lg" className="bg-transparent">
+            <Container>
+              <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-trust-green to-trust-green-dark rounded-2xl p-8 lg:p-12 text-white">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                  Need Help with Sales Forecasting?
+                </h2>
+                <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                  Get expert guidance on building accurate sales forecasts and predictable revenue models.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-white text-trust-green hover:bg-white/90 shadow-lg hover:shadow-xl transition-all"
+                  >
+                    <a href="/book-call">
+                      Book a Call
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </a>
+                  </Button>
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    <a href="/tools">
+                      <Mail className="mr-2 w-5 h-5" />
+                      More Tools
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </Container>
+          </Section>
+        </main>
+
+        <Footer />
+      </div>
+    </div>
   )
 }

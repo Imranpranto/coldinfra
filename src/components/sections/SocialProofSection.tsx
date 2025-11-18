@@ -100,13 +100,13 @@ export function SocialProofSection() {
                 Trusted by leading companies
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8 items-center justify-items-center">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8 items-center justify-items-center">
               {companyLogos.map((company) => (
                 <div
                   key={company.name}
-                  className="group relative h-16 w-32 bg-white/60 backdrop-blur-sm rounded-xl border border-slate-200/50 flex items-center justify-center hover:bg-white hover:border-trust-green/30 hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="group relative h-14 sm:h-16 w-28 sm:w-32 bg-white/60 backdrop-blur-sm rounded-xl border border-slate-200/50 flex items-center justify-center hover:bg-white hover:border-trust-green/30 hover:shadow-lg transition-all duration-300 hover:scale-105"
                 >
-                  <span className="text-sm font-semibold text-slate-400 group-hover:text-slate-700 transition-colors duration-300">{company.name}</span>
+                  <span className="text-xs sm:text-sm font-semibold text-slate-400 group-hover:text-slate-700 transition-colors duration-300">{company.name}</span>
                 </div>
               ))}
             </div>
@@ -131,7 +131,7 @@ export function SocialProofSection() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center p-6 rounded-2xl bg-gradient-to-br from-slate-50/50 to-white/50 border border-slate-100/50 hover:shadow-lg hover:scale-105 transition-all duration-300">
                     <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-trust-green to-primary-teal bg-clip-text text-transparent mb-2">
@@ -164,14 +164,14 @@ export function SocialProofSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="relative group h-full">
                   {/* Glow Effect on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-trust-green/20 to-primary-teal/20 rounded-[24px] blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
 
                   {/* Glass Card */}
-                  <div className="relative h-full bg-white/80 backdrop-blur-xl rounded-[24px] p-8 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] hover:shadow-[0_12px_48px_0_rgba(31,38,135,0.2)] transition-all duration-500">
+                  <div className="relative h-full bg-white/80 backdrop-blur-xl rounded-[24px] p-6 sm:p-8 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] hover:shadow-[0_12px_48px_0_rgba(31,38,135,0.2)] transition-all duration-500">
                     <div className="flex flex-col h-full space-y-6">
                       {/* Rating Stars */}
                       <div className="flex items-center space-x-1">

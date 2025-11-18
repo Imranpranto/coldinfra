@@ -246,7 +246,7 @@ export function HeroSectionModern() {
                   </div>
 
                   {/* Price Comparison Grid */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="bg-slate-50/80 backdrop-blur-sm rounded-xl p-4 border border-slate-100">
                       <div className="text-xs text-slate-500 mb-1 font-medium">Google Retail</div>
                       <div className="text-2xl font-bold text-slate-400 line-through">
