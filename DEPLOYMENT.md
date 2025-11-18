@@ -12,6 +12,7 @@
 ### Configuration Files Updated
 - ✅ `next.config.js` - Updated to use stable Turbopack config (removed deprecated `experimental.turbo`)
 - ✅ `.eslintrc.json` - Simplified for Vercel compatibility
+- ✅ `tsconfig.json` - Fixed module resolution (`moduleResolution: "node"` for webpack compatibility)
 - ✅ `package.json` - All dependencies listed with proper versions
 
 ### Mobile Responsiveness
