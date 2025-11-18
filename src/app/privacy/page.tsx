@@ -14,16 +14,17 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="relative min-h-screen bg-white">
+      {/* Grid Pattern Overlay - Whole Page */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-      <main id="main-content">
-        <Section background="default" padding="xl" className="relative overflow-hidden">
-          {/* Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-green-50/30" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="relative z-10">
+        <Header />
 
-          <Container className="relative z-10">
+        <main id="main-content">
+          <Section padding="xl" className="bg-transparent">
+
+            <Container>
             <div className="max-w-4xl mx-auto">
               {/* Header */}
               <div className="text-center mb-12">
@@ -209,9 +210,10 @@ export default function PrivacyPage() {
             </div>
           </Container>
         </Section>
-      </main>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   )
 }

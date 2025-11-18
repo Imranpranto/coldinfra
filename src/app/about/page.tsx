@@ -14,16 +14,17 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="relative min-h-screen bg-white">
+      {/* Grid Pattern Overlay - Whole Page */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-      <main id="main-content">
-        {/* Hero Section */}
-        <Section background="default" padding="xl" className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-green-50/30" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="relative z-10">
+        <Header />
 
-          <Container className="relative z-10">
+        <main id="main-content">
+          <Section padding="xl" className="bg-transparent">
+
+            <Container>
             <div className="max-w-4xl mx-auto text-center space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-trust-green/10 rounded-full mb-2">
                 <div className="w-2 h-2 bg-trust-green rounded-full animate-pulse" />
@@ -40,7 +41,7 @@ export default function AboutPage() {
         </Section>
 
         {/* Story Section */}
-        <Section background="default" padding="lg">
+        <Section padding="lg" className="bg-transparent">
           <Container>
             <div className="max-w-4xl mx-auto">
               <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-slate-200/50 p-8 lg:p-12 space-y-8">
@@ -64,7 +65,7 @@ export default function AboutPage() {
         </Section>
 
         {/* Mission & Values */}
-        <Section background="default" padding="lg">
+        <Section padding="lg" className="bg-transparent">
           <Container>
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -100,7 +101,7 @@ export default function AboutPage() {
         </Section>
 
         {/* Core Values */}
-        <Section background="default" padding="lg">
+        <Section padding="lg" className="bg-transparent">
           <Container>
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">Our Core Values</h2>
@@ -169,7 +170,7 @@ export default function AboutPage() {
         </Section>
 
         {/* Stats Section */}
-        <Section background="default" padding="lg">
+        <Section padding="lg" className="bg-transparent">
           <Container>
             <div className="bg-gradient-to-br from-trust-green to-trust-green-dark rounded-2xl p-8 lg:p-12">
               <div className="text-center mb-12">
@@ -195,7 +196,7 @@ export default function AboutPage() {
         </Section>
 
         {/* CTA Section */}
-        <Section background="default" padding="lg">
+        <Section padding="lg" className="bg-transparent">
           <Container>
             <div className="max-w-3xl mx-auto text-center bg-white/80 backdrop-blur-xl rounded-2xl border border-slate-200/50 p-8 lg:p-12">
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
@@ -224,9 +225,10 @@ export default function AboutPage() {
             </div>
           </Container>
         </Section>
-      </main>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   )
 }

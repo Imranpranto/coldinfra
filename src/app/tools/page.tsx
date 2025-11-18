@@ -97,8 +97,36 @@ export default function ToolsPage() {
       gradient: "from-teal-500 to-cyan-500"
     },
     {
-      name: "Sales Pipeline Calculator",
-      description: "Calculate conversion rates, pipeline velocity, and sales forecasting metrics for your outbound campaigns.",
+      name: "Username Generator",
+      description: "Generate professional email addresses from full names with multiple pattern variations for your team.",
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+      ),
+      category: "Email",
+      popular: false,
+      href: "/tools/email-generator",
+      gradient: "from-pink-500 to-rose-500"
+    },
+    {
+      name: "Sales Compensation Calculator",
+      description: "Design and analyze sales compensation plans with OTE calculations and pay mix optimization.",
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+        </svg>
+      ),
+      category: "Sales",
+      popular: false,
+      href: "/tools/compensation-calculator",
+      gradient: "from-yellow-500 to-orange-500"
+    },
+    {
+      name: "Sales Forecasting Calculator",
+      description: "Forecast future sales revenue based on pipeline metrics and growth trends with confidence levels.",
       icon: (
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
           <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
@@ -106,34 +134,7 @@ export default function ToolsPage() {
       ),
       category: "Sales",
       popular: false,
-      href: "/tools/sales-pipeline-calculator",
-      gradient: "from-yellow-500 to-orange-500"
-    },
-    {
-      name: "Email Signature Generator",
-      description: "Create professional email signatures with contact information and branding that look great on all devices.",
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-        </svg>
-      ),
-      category: "Branding",
-      popular: false,
-      href: "/tools/email-signature-generator",
-      gradient: "from-pink-500 to-rose-500"
-    },
-    {
-      name: "Deliverability Analyzer",
-      description: "Analyze your email setup and get personalized recommendations for improved deliverability and inbox placement.",
-      icon: (
-        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-          <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
-        </svg>
-      ),
-      category: "Analytics",
-      popular: true,
-      href: "/tools/deliverability-analyzer",
+      href: "/tools/forecasting-calculator",
       gradient: "from-violet-500 to-purple-500"
     }
   ]
@@ -141,17 +142,18 @@ export default function ToolsPage() {
   const categories = Array.from(new Set(tools.map(tool => tool.category)))
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="relative min-h-screen bg-white">
+      {/* Grid Pattern Overlay - Whole Page */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-      <main id="main-content">
-        {/* Hero Section */}
-        <Section background="default" padding="xl" className="relative overflow-hidden">
-          {/* Clean Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-green-50/30" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="relative z-10">
+        <Header />
 
-          <Container className="relative z-10">
+        <main id="main-content">
+          {/* Hero Section */}
+          <Section padding="xl" className="bg-transparent">
+
+          <Container>
             <div className="max-w-4xl mx-auto text-center space-y-6">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-trust-green/10 backdrop-blur-sm rounded-full border border-trust-green/20">
@@ -194,7 +196,7 @@ export default function ToolsPage() {
         </Section>
 
         {/* Category Filter - Optional for future */}
-        <Section background="default" padding="sm">
+        <Section padding="sm" className="bg-transparent">
           <Container>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <button className="px-5 py-2 bg-trust-green text-white rounded-full text-sm font-medium hover:bg-trust-green-dark transition-colors duration-200">
@@ -213,7 +215,7 @@ export default function ToolsPage() {
         </Section>
 
         {/* Tools Grid */}
-        <Section background="default" padding="xl">
+        <Section padding="xl" className="bg-transparent">
           <Container>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {tools.map((tool, index) => (
@@ -275,7 +277,7 @@ export default function ToolsPage() {
         </Section>
 
         {/* CTA Section */}
-        <Section background="default" padding="xl">
+        <Section padding="xl" className="bg-transparent">
           <Container>
             <div className="relative overflow-hidden rounded-[32px]">
               {/* Background */}
@@ -313,9 +315,10 @@ export default function ToolsPage() {
             </div>
           </Container>
         </Section>
-      </main>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   )
 }

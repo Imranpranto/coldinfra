@@ -54,17 +54,17 @@ const blogPosts = [
 
 export default function ResourcesPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <div className="relative min-h-screen bg-white">
+      {/* Grid Pattern Overlay - Whole Page */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-      <main id="main-content">
-        {/* Hero Section */}
-        <Section background="default" padding="lg" className="relative overflow-hidden">
-          {/* Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-green-50/30" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="relative z-10">
+        <Header />
 
-          <Container className="relative z-10">
+        <main id="main-content">
+          <Section padding="lg" className="bg-transparent">
+
+            <Container>
             <div className="max-w-4xl mx-auto text-center mb-12">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-trust-green/10 rounded-full mb-4">
@@ -145,7 +145,7 @@ export default function ResourcesPage() {
         </Section>
 
         {/* CTA Section */}
-        <Section background="default" padding="lg">
+        <Section padding="lg" className="bg-transparent">
           <Container>
             <div className="max-w-3xl mx-auto text-center bg-gradient-to-br from-trust-green to-trust-green-dark rounded-2xl p-8 lg:p-12 text-white">
               <h2 className="text-2xl lg:text-3xl font-bold mb-4">
@@ -166,9 +166,10 @@ export default function ResourcesPage() {
             </div>
           </Container>
         </Section>
-      </main>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   )
 }
