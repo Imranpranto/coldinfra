@@ -20,7 +20,10 @@
       "Bash(for page in privacy book-call terms refund-policy about careers resources)",
       "Bash(do echo \"Processing $page...\")",
       "Bash(done)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(taskkill:*)",
+      "Bash(exit 0)",
+      "Bash(timeout /t 2 /nobreak)"
     ],
     "deny": [],
     "ask": []
