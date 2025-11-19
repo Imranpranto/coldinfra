@@ -1,18 +1,21 @@
 'use client'
 
 import React from 'react'
+import { useRouter } from 'next/navigation'
 import { Container, Section } from '@/components/ui/Container'
 import { PricingCard } from '@/components/ui/PricingCard'
 import { SecurityBadge } from '@/components/ui/SecurityBadge'
 import { trackEvent } from '@/lib/utils'
 
 export function PricingSection() {
+  const router = useRouter()
+
   const handlePlanSelect = (planName: string, price: string) => {
     trackEvent('pricing_plan_select', {
       plan_name: planName,
       price: price
     })
-    // Handle plan selection
+    router.push('/order')
   }
 
   const plans = [

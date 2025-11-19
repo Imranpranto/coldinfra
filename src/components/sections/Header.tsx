@@ -117,7 +117,7 @@ export function Header({ className }: HeaderProps) {
                 ))}
               </nav>
 
-              <Link href="/book-call">
+              <Link href="/order">
                 <Button
                   className={cn(
                     "bg-gradient-to-r from-trust-green to-[#22c55e]",
@@ -131,7 +131,7 @@ export function Header({ className }: HeaderProps) {
                   )}
                   style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
                 >
-                  <span className="relative z-10">Book a Call</span>
+                  <span className="relative z-10">Order Now</span>
                   <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                 </Button>
               </Link>

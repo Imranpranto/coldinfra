@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Container, Section } from '@/components/ui/Container'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -21,6 +22,7 @@ interface PricingCalculation {
 }
 
 export function HeroSectionModern() {
+  const router = useRouter()
   const [mailboxCount, setMailboxCount] = useState([10])
   const [pricing, setPricing] = useState<PricingCalculation>(calculatePricing(10))
 
@@ -77,16 +79,16 @@ export function HeroSectionModern() {
       mailbox_count: mailboxCount[0],
       estimated_cost: pricing.monthlyCost
     })
-    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+    router.push('/order')
   }
 
   const handleBookDemo = () => {
     trackEvent('hero_demo_click', {
-      cta_text: 'Book a Demo',
+      cta_text: 'Talk to Sales',
       section: 'hero',
       mailbox_count: mailboxCount[0]
     })
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+    router.push('/book-call')
   }
 
   return (
