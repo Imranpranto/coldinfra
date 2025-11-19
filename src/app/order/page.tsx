@@ -411,7 +411,7 @@ export default function OrderPage() {
                                 <select
                                   id="customerType"
                                   {...register('customerType')}
-                                  className={`w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors text-slate-900 font-medium ${errors.customerType ? 'border-danger' : 'border-slate-300'
+                                  className={`w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors text-slate-700 ${errors.customerType ? 'border-danger' : 'border-slate-300'
                                     }`}
                                 >
                                   <option value="" className="text-slate-500">Select customer type</option>
@@ -440,7 +440,7 @@ export default function OrderPage() {
                                     type="text"
                                     placeholder="John Doe"
                                     {...register('name')}
-                                    className={`h-12 ${errors.name ? 'border-danger' : 'border-slate-300'}`}
+                                    className={`h-12 text-slate-700 placeholder:text-slate-700 ${errors.name ? 'border-danger' : 'border-slate-300'}`}
                                   />
                                   {errors.name && (
                                     <p className="text-danger text-sm mt-1.5">{errors.name.message}</p>
@@ -456,7 +456,7 @@ export default function OrderPage() {
                                     type="text"
                                     placeholder="Acme Inc."
                                     {...register('companyName')}
-                                    className={`h-12 ${errors.companyName ? 'border-danger' : 'border-slate-300'}`}
+                                    className={`h-12 text-slate-700 placeholder:text-slate-700 ${errors.companyName ? 'border-danger' : 'border-slate-300'}`}
                                   />
                                   {errors.companyName && (
                                     <p className="text-danger text-sm mt-1.5">{errors.companyName.message}</p>
@@ -473,7 +473,7 @@ export default function OrderPage() {
                                   type="email"
                                   placeholder="john@acme.com"
                                   {...register('email')}
-                                  className={`h-12 ${errors.email ? 'border-danger' : 'border-slate-300'}`}
+                                  className={`h-12 text-slate-700 placeholder:text-slate-700 ${errors.email ? 'border-danger' : 'border-slate-300'}`}
                                 />
                                 {errors.email && (
                                   <p className="text-danger text-sm mt-1.5">{errors.email.message}</p>
@@ -489,7 +489,7 @@ export default function OrderPage() {
                                   type="tel"
                                   placeholder="+1 (555) 123-4567"
                                   {...register('phone')}
-                                  className="h-12 border-slate-300"
+                                  className="h-12 text-slate-700 placeholder:text-slate-700 border-slate-300"
                                 />
                               </div>
                             </div>
@@ -632,7 +632,7 @@ export default function OrderPage() {
                                           return true
                                         }
                                       })}
-                                      className="h-12 border-slate-300"
+                                      className="h-12 text-slate-700 placeholder:text-slate-700 border-slate-300"
                                     />
                                     {errors.customInboxes && (
                                       <p className="text-danger text-sm mt-1.5">{errors.customInboxes.message}</p>
@@ -685,7 +685,7 @@ export default function OrderPage() {
                                   <select
                                     id="domainProvider"
                                     {...register('domainProvider')}
-                                    className={`w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors text-slate-900 font-medium ${errors.domainProvider ? 'border-danger' : 'border-slate-300'
+                                    className={`w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors text-slate-700 ${errors.domainProvider ? 'border-danger' : 'border-slate-300'
                                       }`}
                                   >
                                     <option value="" className="text-slate-500">Select provider</option>
@@ -706,7 +706,7 @@ export default function OrderPage() {
                                   <select
                                     id="domainStage"
                                     {...register('domainStage')}
-                                    className={`w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors text-slate-900 font-medium ${errors.domainStage ? 'border-danger' : 'border-slate-300'
+                                    className={`w-full h-12 px-4 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors text-slate-700 ${errors.domainStage ? 'border-danger' : 'border-slate-300'
                                       }`}
                                   >
                                     <option value="" className="text-slate-500">Select stage</option>
@@ -729,7 +729,7 @@ export default function OrderPage() {
                                   rows={4}
                                   placeholder="123 Main St, Suite 100&#10;San Francisco, CA 94105&#10;United States"
                                   {...register('address')}
-                                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors resize-none ${errors.address ? 'border-danger' : 'border-slate-300'
+                                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-trust-green focus:border-trust-green transition-colors resize-none text-slate-700 placeholder:text-slate-700 ${errors.address ? 'border-danger' : 'border-slate-300'
                                     }`}
                                 />
                                 {errors.address && (
