@@ -23,8 +23,8 @@ interface PricingCalculation {
 
 export function HeroSectionModern() {
   const router = useRouter()
-  const [mailboxCount, setMailboxCount] = useState([10])
-  const [pricing, setPricing] = useState<PricingCalculation>(calculatePricing(10))
+  const [mailboxCount, setMailboxCount] = useState([100])
+  const [pricing, setPricing] = useState<PricingCalculation>(calculatePricing(100))
 
   function calculatePricing(count: number): PricingCalculation {
     let pricePerMailbox: number
@@ -139,7 +139,7 @@ export function HeroSectionModern() {
               {/* Value Props with Modern Icons */}
               <div className="space-y-3">
                 {[
-                  { text: 'Integrations with Instantly, Smartlead, EmailBison, Lemlist, and More', icon: Settings },
+                  { text: 'Works seamlessly with Instantly, Smartlead, Lemlist & all major platforms', icon: Settings },
                   { text: 'Google Workspace at 57-64% off retail', icon: TrendingUp },
                   { text: 'Expert cold email infrastructure setup', icon: Sparkles },
                   { text: 'Primary inbox delivery guaranteed', icon: Check }

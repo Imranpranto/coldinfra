@@ -140,7 +140,7 @@ export function Header({ className }: HeaderProps) {
             {/* Mobile Menu Button */}
             <button
               className={cn(
-                "lg:hidden p-1.5 rounded-xl text-white",
+                "lg:hidden p-1.5 rounded-xl text-slate-700",
                 "hover:bg-trust-green/15 transition-all duration-500",
                 "ring-1 ring-trust-green/20 hover:ring-trust-green/40",
                 "hover:scale-110 transform"
