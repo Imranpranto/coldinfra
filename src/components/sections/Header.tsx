@@ -162,22 +162,22 @@ export function Header({ className }: HeaderProps) {
         </div>
       </Container>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <Container className="lg:hidden mt-2">
+        <div className="lg:hidden fixed inset-x-0 top-[72px] z-40 px-4 animate-slide-down">
           <div
             id="mobile-menu"
-            className="relative bg-gradient-to-br from-primary-teal/98 to-[#0d483f]/98 backdrop-blur-2xl rounded-[24px] shadow-2xl px-5 py-5 animate-slide-down border border-trust-green/20"
+            className="relative bg-white/95 backdrop-blur-xl rounded-[24px] shadow-2xl px-5 py-5 border border-slate-200"
           >
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-slate-50/30 to-transparent pointer-events-none" />
 
             <div className="relative space-y-1.5">
               {navigationItems.map((item, index) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block py-2.5 px-4 text-slate-900 hover:text-trust-green hover:bg-white/10 font-semibold rounded-xl transition-all duration-500 ring-1 ring-trust-green/0 hover:ring-trust-green/40 transform hover:scale-105"
+                  className="block py-2.5 px-4 text-slate-900 hover:text-trust-green hover:bg-slate-50 font-semibold rounded-xl transition-all duration-500 ring-1 ring-slate-200/0 hover:ring-trust-green/20 transform hover:scale-105"
                   onClick={() => setIsMenuOpen(false)}
                   style={{
                     fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -189,19 +189,19 @@ export function Header({ className }: HeaderProps) {
               ))}
 
               <div className="pt-3">
-                <Link href="/book-call" className="block" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/order" className="block" onClick={() => setIsMenuOpen(false)}>
                   <Button
                     className="w-full bg-gradient-to-r from-trust-green to-[#22c55e] hover:from-[#22c55e] hover:to-trust-green text-white font-semibold rounded-full shadow-lg shadow-trust-green/40 hover:shadow-trust-green/60 transition-all duration-500 ring-1 ring-trust-green/30 relative overflow-hidden group"
                     style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
                   >
-                    <span className="relative z-10">Book a Call</span>
+                    <span className="relative z-10">Order Now</span>
                     <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                   </Button>
                 </Link>
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       )}
     </header>
   )
