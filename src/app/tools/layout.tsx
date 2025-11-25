@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'ROI calculator',
     'email volume calculator',
     'domain generator',
+    'DNS record generator',
     'DMARC generator',
     'SPF generator',
     'free email tools',

@@ -32,6 +32,20 @@ export default function ToolsPage() {
       gradient: "from-blue-500 to-cyan-500"
     },
     {
+      name: "DNS Record Generator",
+      description: "Generate complete DNS records (MX, SPF, DMARC, DKIM) for any email provider - Google Workspace, Microsoft 365, Zoho, and more.",
+      icon: (
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+      ),
+      category: "Email",
+      popular: true,
+      href: "/tools/dns-record-generator",
+      gradient: "from-purple-500 to-pink-500"
+    },
+    {
       name: "DMARC Record Generator",
       description: "Generate DMARC DNS records for email authentication and security with advanced policy configuration options.",
       icon: (
@@ -42,7 +56,7 @@ export default function ToolsPage() {
       category: "Security",
       popular: false,
       href: "/tools/dmarc-generator",
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-indigo-500 to-purple-500"
     },
     {
       name: "Email Cost Calculator",
@@ -81,7 +95,7 @@ export default function ToolsPage() {
       category: "Security",
       popular: false,
       href: "/tools/spf-generator",
-      gradient: "from-indigo-500 to-purple-500"
+      gradient: "from-cyan-500 to-blue-500"
     },
     {
       name: "Email Volume Calculator",
